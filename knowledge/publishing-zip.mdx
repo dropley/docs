@@ -1,0 +1,110 @@
+---
+title: "Publishing ZIP Projects"
+description: "How to structure and publish ZIP projects with multiple files on Dropley."
+---
+
+# Publishing ZIP Projects
+
+For complex projects with multiple files (HTML, CSS, JS, images, fonts), you can publish a ZIP archive. This guide covers the expected structure and requirements.
+
+## Project Structure
+
+Your ZIP should follow this structure:
+
+```
+my-project.zip
+├── index.html           ← Entry point (required)
+├── styles/
+│   └── main.css
+├── scripts/
+│   └── app.js
+└── images/
+    └── logo.png
+```
+
+### Entry Point
+
+The **entry point** is the HTML file that serves as the root when visiting `https://dropley.app/p/{shortId}`. By default, Dropley uses `index.html`.
+
+If your entry point is nested in a subdirectory, you can specify its path during upload. For example, if your structure is:
+
+```
+my-project.zip
+└── src/
+    └── index.html
+```
+
+Set the entry point to `src/index.html`.
+
+### Supported File Types
+
+| Extension | Type |
+|-----------|------|
+| `.html` | HTML pages |
+| `.css` | Stylesheets |
+| `.js` | JavaScript |
+| `.json` | Data files |
+| `.png` | PNG images |
+| `.jpg`, `.jpeg` | JPEG images |
+| `.svg` | SVG images |
+| `.gif` | GIF images |
+| `.webp` | WebP images |
+| `.woff`, `.woff2` | Web fonts |
+
+Files with other extensions are rejected during upload.
+
+## Best Practices
+
+### Use Relative Paths
+
+All internal references must use **relative paths**:
+
+```html
+<!-- Correct -->
+<link rel="stylesheet" href="styles/main.css">
+<script src="scripts/app.js"></script>
+<img src="images/logo.png" alt="Logo">
+
+<!-- Incorrect — absolute paths won't resolve locally -->
+<link rel="stylesheet" href="/styles/main.css">
+```
+
+### Organize Assets
+
+Keep your project organized with clear directory names. This makes it easier to maintain and debug.
+
+### Keep It Reasonable
+
+Very large ZIPs (100MB+) may fail or take too long to upload. Optimize images and remove unused files before zipping.
+
+## Upload Process
+
+1. Create your ZIP with the structure above
+2. Go to [dropley.app](https://dropley.app)
+3. Drag and drop or click to upload
+4. Set the entry point if it's not `index.html` at root
+5. Choose your expiration
+6. Get your URL
+
+## What Gets Served
+
+Dropley preserves the exact directory structure of your ZIP. Files are served with their original paths relative to the entry point:
+
+```
+Original ZIP:
+  index.html
+  styles/main.css
+  scripts/app.js
+
+Served as:
+  https://dropley.app/p/abc12345/         → index.html
+  https://dropley.app/p/abc12345/styles/main.css
+  https://dropley.app/p/abc12345/scripts/app.js
+```
+
+## Limitations
+
+- Dropley does not execute server-side code (PHP, Python, Node.js, etc.)
+- Server-side includes and SSI are not supported
+- Database-backed applications won't work (no MySQL/PostgreSQL)
+- Dropley is for static site hosting only

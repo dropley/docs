@@ -1,0 +1,37 @@
+---
+title: "GitHub Copilot / Codex Guide"
+description: "How to publish Dropley artifacts using GitHub Copilot and OpenAI Codex."
+---
+
+# Publishing with GitHub Copilot / Codex
+
+GitHub Copilot and OpenAI Codex can help you create projects ready for Dropley publishing.
+
+## Prerequisites
+
+- GitHub Copilot (VS Code, JetBrains, etc.)
+- Or OpenAI Codex (API, ChatGPT)
+
+## Workflow
+
+1. Use Copilot/Codex to write your project code
+2. Generate the ZIP structure using a script or manual packaging
+3. Upload the ZIP to [dropley.app](https://dropley.app)
+
+## Pro Tips
+
+- Ask Copilot to generate HTML with self-contained styles
+- Use Codex to write a build script that outputs a ZIP
+- For multi-file projects, use Copilot to scaffold the directory structure
+
+## Example
+
+```
+Generate a dashboard.html page with:
+- A dark theme
+- Three metric cards
+- A chart using Chart.js from CDN
+- All CSS inline
+```
+
+Then zip the HTML file and upload to Dropley.

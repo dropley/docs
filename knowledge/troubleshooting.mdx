@@ -1,0 +1,84 @@
+---
+title: "Troubleshooting"
+description: "Common issues and how to fix them when using Dropley."
+---
+
+# Troubleshooting
+
+## Upload Failures
+
+### "File type not supported"
+
+You included a file type that isn't in the [supported list](/knowledge/publishing-zip#supported-file-types). Remove unsupported files from your ZIP and try again.
+
+### "File too large"
+
+Your ZIP exceeds the [file size limit](/knowledge/limits). Optimize images, remove unused files, and try again.
+
+### Upload hangs or times out
+
+- Check your internet connection
+- Try a smaller ZIP
+- Reduce image sizes
+- Wait a moment and try again
+
+## Publishing Issues
+
+### Artifact shows "failed" status
+
+This usually means Dropley couldn't extract or validate your ZIP. Try:
+
+1. Re-zip your project
+2. Make sure the ZIP isn't corrupted
+3. Verify your entry point path is correct
+4. Check all files are supported types
+
+### "Entry point not found"
+
+Dropley couldn't find the entry HTML file at the path you specified. Make sure:
+
+- The file exists in your ZIP
+- The path is correct
+- The file name matches exactly (case-sensitive)
+
+## Serving Issues
+
+### Page shows blank or broken
+
+- Check your HTML for syntax errors
+- Verify all asset paths are **relative**, not absolute
+- Open browser dev tools (F12) and check the Console/Network tabs for errors
+
+### CSS/JS not loading
+
+- Make sure the file paths in your HTML match the ZIP structure
+- All paths must be relative (not starting with `/`)
+- Check that file extensions match the supported types
+
+### Images not displaying
+
+- Verify the image path in your HTML
+- Check the image format is supported
+- Ensure the image file exists in your ZIP
+
+## Expiration Issues
+
+### My artifact expired before I expected
+
+Check the expiry you selected during upload. The countdown starts immediately after successful upload.
+
+### Can I extend an expired artifact?
+
+No. Once expired, the artifact is permanently deleted. You need to upload again.
+
+## Browser Issues
+
+### Page doesn't render correctly
+
+- Try a modern browser (Chrome, Firefox, Safari, Edge)
+- Clear your browser cache
+- Check for JavaScript errors in the console
+
+## Still Stuck?
+
+If you're still having issues, check the [service limits](/knowledge/limits) or browse the [FAQ](/knowledge/faq).

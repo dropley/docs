@@ -1,0 +1,63 @@
+---
+title: "Security & Acceptable Use"
+description: "Security practices and acceptable use policies for Dropley."
+---
+
+# Security & Acceptable Use
+
+## Security
+
+### HTTPS
+
+All Dropley URLs, including artifact pages, are served over HTTPS. TLS is enforced at the edge.
+
+### Content Security Policy
+
+Dropley applies strict Content Security Policy (CSP) headers to published artifacts. These restrict which resources (scripts, styles, images) the page can load.
+
+### No User Accounts
+
+Dropley does not collect or store personal data. There are no accounts, passwords, or sessions. Your artifact token is the only credential for managing your artifact.
+
+### Abuse Protection
+
+Dropley uses:
+- **Rate limiting** to prevent API abuse
+- **WAF rules** at the edge for common attack patterns
+- **IP-based throttling** with daily rotating HMAC-SHA256 hashing — no raw IPs stored
+- **Virus scanning** on uploaded files
+
+### Data Deletion
+
+When an artifact expires, all associated files and metadata are permanently deleted. No backups are retained.
+
+## Acceptable Use
+
+### What You Can Publish
+
+Any static content that complies with applicable laws. Examples include:
+- Personal projects and portfolios
+- Design previews and prototypes
+- Documentation pages
+- Educational content
+- Open-source project demos
+
+### What You Cannot Publish
+
+- **Illegal content**: Anything that violates applicable laws
+- **Malware or exploits**: Files designed to harm systems or users
+- **Phishing content**: Pages impersonating legitimate services
+- **Hate speech**: Content that promotes violence or discrimination
+- **Adult content**: Pornography or sexually explicit material
+- **Copyright-infringing content**: Material you don't have rights to distribute
+
+### Enforcement
+
+Abusive content may be removed without notice. Repeat violations may result in:
+- IP-level blocking
+- Upload rate limit reduction
+- Content removal
+
+### Reporting Abuse
+
+To report an artifact that violates these policies, use the report link on the artifact page, or contact us through the [GitHub repository](https://github.com/dropley).

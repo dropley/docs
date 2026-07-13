@@ -1,0 +1,79 @@
+{
+  "name": "Dropley Docs",
+  "navigation": {
+    "groups": [
+      {
+        "group": "Getting Started",
+        "pages": ["index", "knowledge/getting-started"]
+      },
+      {
+        "group": "Knowledge Base",
+        "pages": [
+          "knowledge/concepts",
+          "knowledge/publishing-html",
+          "knowledge/publishing-zip",
+          "knowledge/faq",
+          "knowledge/troubleshooting",
+          "knowledge/limits",
+          "knowledge/security",
+          "knowledge/examples"
+        ]
+      },
+      {
+        "group": "AI Assistant Guides",
+        "pages": [
+          "guides/claude",
+          "guides/codex",
+          "guides/gemini",
+          "guides/cursor",
+          "guides/windsurf",
+          "guides/cline",
+          "guides/roo"
+        ]
+      }
+    ],
+    "anchors": [
+      {
+        "anchor": "API Reference",
+        "href": "https://dropley.app/docs/api",
+        "icon": "arrow-up-right-from-square"
+      }
+    ]
+  },
+  "colors": {
+    "primary": "#F5A623",
+    "light": "#FEF3C7",
+    "dark": "#3B2F00",
+    "background": {
+      "light": "#FFFFFF",
+      "dark": "#0A0A0A"
+    },
+    "anchors": {
+      "from": "#F5A623",
+      "to": "#FFD700"
+    }
+  },
+  "logo": {
+    "light": "https://dropley.app/logo-light.svg",
+    "dark": "https://dropley.app/logo-dark.svg",
+    "href": "https://dropley.app"
+  },
+  "favicon": "https://dropley.app/favicon.ico",
+  "appearance": {
+    "default": "system",
+    "allowToggle": true
+  },
+  "knownPaths": [
+    "/skill",
+    "/examples/basic-html/",
+    "/examples/html-with-assets/",
+    "/examples/zip-project/",
+    "/examples/markdown/"
+  ],
+  "footer": {
+    "socials": {
+      "github": "https://github.com/dropley",
+      "x": "https://x.com/dropley"
+    }
+  }
+}

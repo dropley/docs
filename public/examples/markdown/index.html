@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Example | Dropley</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 0 24px;
+      line-height: 1.8;
+      color: #333;
+    }
+    #content {
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 32px;
+    }
+    h1 { color: #F5A623; }
+    pre { background: #1a1a1a; color: #e0e0e0; padding: 16px; border-radius: 8px; overflow-x: auto; }
+    code { font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <h1>Markdown Rendered to HTML</h1>
+    <p>This page uses the <strong>marked</strong> library to render Markdown content client-side.</p>
+    <hr>
+    <div id="md-output"></div>
+  </div>
+  <script>
+    const markdown = `
+# Hello from Markdown!
+
+This content is written in **Markdown** and rendered by [marked](https://marked.js.org/).
+
+## Features
+
+- Client-side Markdown rendering
+- Uses a CDN-hosted library
+- Single HTML file with inline script
+
+### Code Block
+
+\`\`\`javascript
+console.log("Published via Dropley!");
+\`\`\`
+
+> Dropley makes it easy to publish dynamic content.
+    `;
+    document.getElementById('md-output').innerHTML = marked.parse(markdown);
+  </script>
+</body>
+</html>

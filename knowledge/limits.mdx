@@ -1,0 +1,48 @@
+---
+title: "Service Limits"
+description: "Current limits and constraints for using Dropley."
+---
+
+# Service Limits
+
+Dropley is designed to be generous for typical use cases. These limits help ensure fair usage and system stability.
+
+## General Limits
+
+| Limit | Value |
+|-------|-------|
+| Maximum file size | 50 MB per ZIP |
+| Maximum files per ZIP | 500 files |
+| Maximum path depth | 10 directories |
+| Supported file types | 12 types (see [ZIP projects](/knowledge/publishing-zip#supported-file-types)) |
+
+## Expiration Limits
+
+| Duration | Available |
+|----------|-----------|
+| 1 day | Yes |
+| 3 days | Yes |
+| 7 days | Yes (default) |
+| 15 days | Yes |
+| 30 days | Yes |
+| Never | No |
+
+## Rate Limits
+
+Rate limits are applied per endpoint to prevent abuse. If you exceed a rate limit, you'll receive a `429 Too Many Requests` response.
+
+| Endpoint | Window | Limit |
+|----------|--------|-------|
+| POST /api/artifacts | Per minute | 10 requests |
+| GET /api/artifacts/{shortId} | Per minute | 60 requests |
+| All other endpoints | Per minute | 30 requests |
+
+## Fair Use
+
+- Dropley is free for everyone. Please use it reasonably.
+- Automated bulk uploads or scraping are not permitted.
+- Abusive usage may result in rate limit tightening or temporary blocks.
+
+## Increasing Limits
+
+Limits are set for system stability and cannot be increased on a per-user basis (there are no users or accounts). If your use case consistently exceeds these limits, consider self-hosting or contacting us through the [GitHub repository](https://github.com/dropley).

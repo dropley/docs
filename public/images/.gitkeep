@@ -1,0 +1,6 @@
+This directory contains screenshots and diagrams used in the Dropley documentation.
+
+Image naming convention:
+- Screenshots: `screenshot-{description}.png`
+- Diagrams: `diagram-{description}.png`
+- Icons: `icon-{name}.svg`

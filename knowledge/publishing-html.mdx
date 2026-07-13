@@ -1,0 +1,80 @@
+---
+title: "Publishing HTML Projects"
+description: "Requirements and best practices for publishing single HTML pages on Dropley."
+---
+
+# Publishing HTML Projects
+
+Dropley makes it easy to publish single HTML pages. This guide covers the requirements and best practices.
+
+## Requirements
+
+Your single HTML page must:
+
+1. Be packaged in a **ZIP file**
+2. Have a **`.html` extension** (or `.htm`)
+3. The ZIP should contain exactly one HTML file at the root
+
+<Callout type="info">
+  Even for a single HTML page, Dropley requires it to be inside a ZIP. This keeps the upload interface uniform across all project types.
+</Callout>
+
+## Creating Your ZIP
+
+```bash
+zip my-page.zip index.html
+```
+
+Or from your file manager: select the HTML file → right-click → Compress.
+
+## Best Practices
+
+### DOCTYPE and Meta Tags
+
+Always include a `<!DOCTYPE html>` declaration and character encoding:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Page</title>
+</head>
+<body>
+  <!-- Your content -->
+</body>
+</html>
+```
+
+### Self-Contained Assets
+
+Since you're uploading a single HTML file, any CSS or JavaScript should be **inline** or linked via CDN:
+
+```html
+<style>
+  /* Inline styles */
+  body { font-family: system-ui, sans-serif; }
+</style>
+<script>
+  // Inline script
+  console.log("Hello from Dropley!");
+</script>
+```
+
+Or use CDN-hosted libraries:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+<script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
+```
+
+### Relative Paths
+
+If your page references local assets, you need a [ZIP project](/knowledge/publishing-zip) instead. Single HTML files cannot reference local CSS/JS/images that aren't in the ZIP.
+
+## Known Limitations
+
+- Large files may take longer to upload
+- HTML files with absolute local paths (`file:///`) won't work in the browser after publishing
+- JavaScript that relies on server-side processing won't work
