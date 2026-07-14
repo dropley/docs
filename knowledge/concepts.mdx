@@ -13,18 +13,12 @@ An **artifact** is a published website created from an uploaded ZIP. Every artif
 
 - A unique **shortId** (8-character nanoid, e.g., `abc12345`)
 - A public URL at `https://dropley.app/p/{shortId}`
-- A **status**: `uploaded` → `published` or `failed`
+- A **status**: `published` on creation (`failed` if something goes wrong)
 - An **expiration date** after which it's automatically deleted
 
-## Publishing Models
+## How Publishing Works
 
-### Single HTML Page
-
-A ZIP containing a single HTML file. Dropley serves it as-is with no additional structure. Best for simple pages, previews, or quick shares.
-
-### ZIP Project
-
-A ZIP with multiple files (HTML, CSS, JS, images, fonts). Dropley identifies the **entry point** (`index.html` by default) and serves the full project structure, preserving relative paths.
+Dropley accepts ZIP archives, folders, or loose files. The client normalizes them into a consistent manifest and uploads via a single API. On the server, files are stored in an R2 bucket and served with their original directory structure. Dropley identifies the **entry point** (`index.html` by default) and serves the full project, preserving relative paths.
 
 ## Expiration
 
@@ -40,9 +34,9 @@ Every artifact automatically expires. You choose the lifetime when uploading:
 
 After expiration, the artifact and all its files are permanently deleted. There is no "never expire" option.
 
-## Permanent URLs
+## Artifact URLs
 
-Artifact URLs are permanent within their lifetime. The URL structure is:
+Each artifact gets a unique URL that lives for its configured duration. The URL structure is:
 
 ```
 https://dropley.app/p/{shortId}
@@ -56,7 +50,7 @@ https://dropley.app/p/{shortId}/{path/to/asset}
 
 ## Upload Source Tag
 
-When an artifact is published through an AI assistant or tool, an optional **source tag** identifies what created it (e.g., "Claude", "ChatGPT"). This appears below the "Copy URL" section on the management page.
+When an artifact is published through an AI assistant or tool, an optional **source tag** identifies what created it. Available sources: Claude Code, ChatGPT, Cursor, Lovable, Bolt, Storybook, Figma, or Other. This is displayed on the artifact page and helps Dropley understand how the service is used.
 
 ## Artifact Token
 
@@ -66,7 +60,7 @@ When you create an artifact, you receive an **artifact token**. This token lets 
 - Update the artifact (change expiration, tags, source)
 - Delete the artifact
 
-Keep this token secure — anyone with it can modify your artifact.
+The token expires **30 minutes** after creation. Keep it secure — anyone with it can modify your artifact while it's valid.
 
 ## No Account System
 

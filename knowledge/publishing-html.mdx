@@ -3,29 +3,24 @@ title: "Publishing HTML Projects"
 description: "Requirements and best practices for publishing single HTML pages on Dropley."
 ---
 
-# Publishing HTML Projects
+# Publishing a Single HTML Page
 
-Dropley makes it easy to publish single HTML pages. This guide covers the requirements and best practices.
+Dropley makes it easy to publish a single HTML page. You can upload it as a ZIP, a loose file, or inside a folder.
 
 ## Requirements
 
-Your single HTML page must:
+Your HTML page must:
 
-1. Be packaged in a **ZIP file**
-2. Have a **`.html` extension** (or `.htm`)
-3. The ZIP should contain exactly one HTML file at the root
+1. Be named **`index.html`** (or nest it and specify the entry point)
+2. Use **relative paths** for any local asset references
 
-<Callout type="info">
-  Even for a single HTML page, Dropley requires it to be inside a ZIP. This keeps the upload interface uniform across all project types.
-</Callout>
+## Uploading
 
-## Creating Your ZIP
+You can upload a single HTML page in several ways:
 
-```bash
-zip my-page.zip index.html
-```
-
-Or from your file manager: select the HTML file → right-click → Compress.
+- **As a loose file**: Drag `index.html` directly onto the upload area
+- **In a ZIP**: Package it as `index.html` inside a ZIP archive
+- **In a folder**: Drag a folder containing `index.html`
 
 ## Best Practices
 
@@ -49,7 +44,7 @@ Always include a `<!DOCTYPE html>` declaration and character encoding:
 
 ### Self-Contained Assets
 
-Since you're uploading a single HTML file, any CSS or JavaScript should be **inline** or linked via CDN:
+If you're uploading a single HTML file, any CSS or JavaScript should be **inline** or linked via CDN:
 
 ```html
 <style>
@@ -69,9 +64,9 @@ Or use CDN-hosted libraries:
 <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
 ```
 
-### Relative Paths
+### Multi-File Projects
 
-If your page references local assets, you need a [ZIP project](/knowledge/publishing-zip) instead. Single HTML files cannot reference local CSS/JS/images that aren't in the ZIP.
+If your page references local CSS, JS, or images, upload the whole folder structure as a [ZIP project](/knowledge/publishing-zip) instead.
 
 ## Known Limitations
 

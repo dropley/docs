@@ -11,10 +11,11 @@ Dropley is designed to be generous for typical use cases. These limits help ensu
 
 | Limit | Value |
 |-------|-------|
-| Maximum file size | 50 MB per ZIP |
-| Maximum files per ZIP | 500 files |
-| Maximum path depth | 10 directories |
-| Supported file types | 12 types (see [ZIP projects](/knowledge/publishing-zip#supported-file-types)) |
+| Maximum file size | 50 MB per upload |
+| Maximum files per ZIP | 1,000 files |
+| Maximum directory depth | 5 levels |
+| Maximum path length | 255 characters |
+| Supported file types | 11 extensions (see [ZIP projects](/knowledge/publishing-zip#supported-file-types)) |
 
 ## Expiration Limits
 
@@ -29,13 +30,19 @@ Dropley is designed to be generous for typical use cases. These limits help ensu
 
 ## Rate Limits
 
-Rate limits are applied per endpoint to prevent abuse. If you exceed a rate limit, you'll receive a `429 Too Many Requests` response.
+Rate limits are applied per endpoint to prevent abuse. Limits are reset per window (minute or hour). If you exceed a rate limit, you'll receive a `429 Too Many Requests` response.
 
 | Endpoint | Window | Limit |
 |----------|--------|-------|
-| POST /api/artifacts | Per minute | 10 requests |
-| GET /api/artifacts/{shortId} | Per minute | 60 requests |
-| All other endpoints | Per minute | 30 requests |
+| POST /api/artifacts | Per hour | 5 requests |
+| PATCH /api/artifacts/{shortId} | Per minute | 20 requests |
+| DELETE /api/artifacts/{shortId} | Per minute | 20 requests |
+| GET /api/settings | Per minute | 30 requests |
+| GET /api/health | Per minute | 60 requests |
+| GET /api/version | Per minute | 60 requests |
+| GET /api/track | Per minute | 60 requests |
+| GET /api/report | Per minute | 60 requests |
+| POST /api/csp-report | Per minute | 60 requests |
 
 ## Fair Use
 
