@@ -41,24 +41,24 @@
     ]
   },
   "colors": {
-    "primary": "#F5A623",
-    "light": "#FEF3C7",
-    "dark": "#3B2F00",
+    "primary": "#171717",
+    "light": "#fafafa",
+    "dark": "#0b0b0f",
     "background": {
       "light": "#FFFFFF",
       "dark": "#0A0A0A"
     },
     "anchors": {
-      "from": "#F5A623",
-      "to": "#FFD700"
+      "from": "#171717",
+      "to": "#0070f3"
     }
   },
   "logo": {
-    "light": "https://dropley.app/logo-light.svg",
-    "dark": "https://dropley.app/logo-dark.svg",
+    "light": "/images/logo-light.svg",
+    "dark": "/images/logo-dark.svg",
     "href": "https://dropley.app"
   },
-  "favicon": "https://dropley.app/favicon.ico",
+  "favicon": "/images/favicon.svg",
   "appearance": {
     "default": "system",
     "allowToggle": true
