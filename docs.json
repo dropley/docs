@@ -1,5 +1,8 @@
 {
   "name": "Dropley Docs",
+  "assistant": {
+    "enabled": false
+  },
   "navigation": {
     "groups": [
       {
