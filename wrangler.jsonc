@@ -5,8 +5,5 @@
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": "dist/client"
-  },
-  "routes": [
-    { "pattern": "docs.dropley.app", "custom_domain": true }
-  ]
+  }
 }

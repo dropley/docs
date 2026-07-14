@@ -1,4 +1,9 @@
 node_modules/
 dist/
 .holocron/
+.wrangler/
 *.local
+.env
+.env.*
+.dev.vars
+.dev.vars.*
