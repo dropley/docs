@@ -1,28 +1,37 @@
 ---
 name: dropley
-description: Publish files and static websites to Dropley and return a public shareable URL. Use whenever the user asks to upload, publish, host, deploy, or share files on Dropley.
+description: Publish files and static websites to Dropley and return a public shareable URL. Use whenever the user asks to publish or deploy content on Dropley.
 ---
 
 # Dropley
 
-Publish one or more files to Dropley.
+Publish static content to Dropley as a **manifest** — a JSON envelope describing the files and which one is the entry page.
 
-**Endpoint:** `POST https://dropley.app/api/artifacts`
+## Steps
 
-**Content-Type:** `multipart/form-data`
+### 1. Gather the files
 
-**Authentication:** None
+Ask the user what to publish. Determine which file is the entry page. If the site has multiple HTML files and the entry is unclear, ask.
 
-## Requirements
+Completion criterion: files identified, entry page known.
 
-- Send a JSON `manifest` multipart field.
-- Send one `file` multipart field for each file listed in `manifest.files`, in the same order.
-- The site's entry document **must** be uploaded as `index.html`.
-- For multi-file sites, preserve the relative paths of all other files.
-- Use accurate file sizes and MIME types.
-- Return the public URL from the response.
+### 2. Build the manifest
 
-## Response
+Construct the `manifest` JSON string. The entry HTML **must** be named `index.html` regardless of its original filename. For multi-file sites, preserve relative paths of all other files. Use accurate sizes and MIME types.
+
+Completion criterion: manifest constructed, entry named `index.html`.
+
+### 3. Send
+
+`POST https://dropley.app/api/artifacts` — `Content-Type: multipart/form-data`
+
+Two multipart fields:
+- `manifest`: the JSON string from step 2
+- `file`: one part per file, in the same order as `manifest.files`
+
+Completion criterion: response received with HTTP 2xx.
+
+### 4. Return the URL
 
 ```json
 {
@@ -32,9 +41,13 @@ Publish one or more files to Dropley.
 }
 ```
 
-## Specification
+Return the `url` to the user. Tell them to retain the `artifactToken` for future updates or deletion.
 
-For the complete upload protocol, validation rules, manifest schema, limits, and future updates, consult:
+Completion criterion: URL returned to user, token retention explained.
 
-- https://dropley.app/llms.txt
-- https://dropley.app/api/v1/openapi.json
+## External reference
+
+For the complete upload protocol, validation rules, manifest schema, expiry options, tags, limits, and future updates, consult:
+
+- `https://dropley.app/llms.txt`
+- `https://dropley.app/api/v1/openapi.json`
