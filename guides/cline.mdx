@@ -1,37 +1,29 @@
 ---
 title: "Cline Guide"
-description: "How to publish Dropley artifacts using Cline (CLI AI)."
+description: "How to publish Dropley artifacts using Cline."
 ---
 
 # Publishing with Cline
 
-Cline is a CLI-native AI assistant that can help you build and publish Dropley artifacts from the terminal.
+Cline can publish artifacts to Dropley directly from the terminal.
 
-## Prerequisites
+## Setup
 
-- Cline installed and configured
+Tell Cline to install the Dropley skill:
+
+```
+npx skill add dropley/docs
+```
 
 ## Workflow
 
 1. Ask Cline to create your project files
-2. Have Cline package them into a ZIP:
-   ```bash
-   zip -r project.zip index.html styles/ scripts/
-   ```
-3. Upload to [dropley.app](https://dropley.app)
-
-## Pro Tips
-
-- Cline excels at creating files directly in your filesystem
-- Ask Cline to create the ZIP as part of its workflow
-- Cline can also read the Dropley docs to give you publishing advice
+2. Tell Cline: "Publish this to Dropley"
+3. Cline uses the skill to upload your files and return a shareable URL
 
 ## Example
 
 ```
-Cline, create a project directory with:
-- index.html (landing page)
-- styles/main.css
-- scripts/app.js
-Then zip it for Dropley upload.
+Create a project directory with index.html, styles/main.css, and scripts/app.js.
+Then publish the whole project to Dropley.
 ```

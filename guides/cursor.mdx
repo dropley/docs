@@ -1,36 +1,29 @@
 ---
 title: "Cursor Guide"
-description: "How to publish Dropley artifacts using Cursor editor."
+description: "How to publish Dropley artifacts using Cursor."
 ---
 
 # Publishing with Cursor
 
-Cursor is an AI-first code editor that can help you build and publish Dropley artifacts.
+Cursor can publish artifacts to Dropley directly from the editor.
 
-## Prerequisites
+## Setup
 
-- Cursor editor installed
-- Your project code ready
+Tell Cursor to install the Dropley skill:
+
+```
+npx skill add dropley/docs
+```
 
 ## Workflow
 
-1. Write your project code in Cursor with AI assistance
-2. Use Cursor's terminal to create the ZIP:
-   ```bash
-   zip -r my-project.zip . -x "node_modules/*" ".git/*"
-   ```
-3. Upload to [dropley.app](https://dropley.app)
-
-## Pro Tips
-
-- Use Cursor Composer (Cmd+K) to generate full projects
-- Ask Cursor to scaffold a project with proper relative paths
-- Use the built-in terminal to test your ZIP structure before uploading
+1. Use Cursor Composer (Cmd+K) to generate your project
+2. Tell Cursor: "Publish this to Dropley"
+3. Cursor uses the skill to upload your files and return a shareable URL
 
 ## Example
 
 ```
-In Cursor Composer, prompt: "Create a personal website with
-index.html, about.html, styles.css, and images. All HTML files
-should use relative paths to styles.css and images."
+Create a personal website with index.html, about.html, styles.css, and images.
+Use relative paths. Then publish to Dropley.
 ```

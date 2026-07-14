@@ -5,31 +5,25 @@ description: "How to publish Dropley artifacts using Windsurf IDE."
 
 # Publishing with Windsurf
 
-Windsurf (by Codeium) is an AI-powered IDE that can help you create and publish Dropley artifacts.
+Windsurf can publish artifacts to Dropley directly from the IDE.
 
-## Prerequisites
+## Setup
 
-- Windsurf IDE installed
+Tell Windsurf to install the Dropley skill:
+
+```
+npx skill add dropley/docs
+```
 
 ## Workflow
 
-1. Use Windsurf's AI flow to generate your project
-2. Create a ZIP from the project directory:
-   ```bash
-   zip -r output.zip . -x "node_modules/*" ".git/*"
-   ```
-3. Upload the ZIP to [dropley.app](https://dropley.app)
-
-## Pro Tips
-
-- Windsurf's Cascade can scaffold entire projects from natural language
-- Ask Windsurf to build projects with static-file-friendly paths
-- Use the built-in terminal for ZIP creation
+1. Use Windsurf's Cascade to generate your project
+2. Tell Windsurf: "Publish this to Dropley"
+3. Windsurf uses the skill to upload your files and return a shareable URL
 
 ## Example
 
 ```
-In Windsurf Cascade: "Build a project dashboard with index.html,
-style.css, and app.js. Use CDN for Chart.js and make sure all
-paths are relative."
+Build a project dashboard with index.html, style.css, and app.js.
+Use CDN for Chart.js and relative paths. Then publish to Dropley.
 ```

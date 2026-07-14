@@ -5,31 +5,25 @@ description: "How to publish Dropley artifacts using Roo CLI."
 
 # Publishing with Roo
 
-Roo is a command-line AI assistant that can help you create and publish Dropley artifacts.
+Roo can publish artifacts to Dropley directly from the terminal.
 
-## Prerequisites
+## Setup
 
-- Roo CLI installed and configured
+Tell Roo to install the Dropley skill:
+
+```
+npx skill add dropley/docs
+```
 
 ## Workflow
 
 1. Ask Roo to generate your project code
-2. Have Roo create the ZIP file:
-   ```bash
-   zip -r artifact.zip . -x "node_modules/*" ".git/*"
-   ```
-3. Upload to [dropley.app](https://dropley.app)
-
-## Pro Tips
-
-- Roo can create files directly and run shell commands
-- Ask Roo to verify the ZIP structure before uploading
-- For single-file projects, Roo can create the HTML and ZIP in one step
+2. Tell Roo: "Publish this to Dropley"
+3. Roo uses the skill to upload your files and return a shareable URL
 
 ## Example
 
 ```
-Roo, generate an HTML page that shows real-time weather data.
-Include the HTML with inline CSS and JS that fetches from a
-free weather API. Then zip it for Dropley.
+Generate an HTML page that shows real-time weather data with inline CSS and JS.
+Then publish it to Dropley.
 ```

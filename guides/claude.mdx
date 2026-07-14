@@ -1,37 +1,29 @@
 ---
 title: "Claude Guide"
-description: "How to publish Dropley artifacts using Claude AI."
+description: "How to publish Dropley artifacts using Claude."
 ---
 
 # Publishing with Claude
 
-Claude can help you create and publish artifacts to Dropley directly from your conversation.
+Claude can publish artifacts to Dropley directly.
 
-## Prerequisites
+## Setup
 
-- Claude (claude.ai or API)
-- Your project files ready
+Tell Claude to install the Dropley skill:
+
+```
+npx skill add dropley/docs
+```
 
 ## Workflow
 
 1. Ask Claude to generate your project (HTML page, dashboard, etc.)
-2. Tell Claude: "Package this as a ZIP file I can upload to Dropley"
-3. Claude will prepare the ZIP with the correct structure
-4. Download the ZIP from Claude
-5. Upload to [dropley.app](https://dropley.app)
-
-## Pro Tips
-
-- Ask Claude to structure your project as a proper ZIP before downloading
-- For single-page projects, ask for inline CSS/JS so everything is in one file
-- Claude can also generate the `index.html` ent ry point for multi-file projects
+2. Tell Claude: "Publish this to Dropley"
+3. Claude uses the skill to upload your files and return a shareable URL
 
 ## Example Prompt
 
 ```
-Create a personal portfolio page as a ZIP file for Dropley.
-Include: index.html, styles/main.css, and a projects listing.
-Make sure all paths are relative.
+Build a personal portfolio page with index.html, styles/main.css, and scripts/app.js.
+Use relative paths. Then publish it to Dropley.
 ```
-
-Claude will generate the files and package them into a downloadable ZIP.

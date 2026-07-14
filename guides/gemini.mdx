@@ -5,29 +5,25 @@ description: "How to publish Dropley artifacts using Google Gemini."
 
 # Publishing with Gemini
 
-Google Gemini can help you create projects and prepare them for Dropley publishing.
+Gemini can publish artifacts to Dropley directly.
 
-## Prerequisites
+## Setup
 
-- Access to Google Gemini (gemini.google.com or API)
+Tell Gemini to install the Dropley skill:
+
+```
+npx skill add dropley/docs
+```
 
 ## Workflow
 
 1. Ask Gemini to generate your project
-2. Request the output as files you can download
-3. Package into a ZIP (Gemini may provide individual files)
-4. Upload the ZIP to [dropley.app](https://dropley.app)
-
-## Pro Tips
-
-- Ask Gemini for a complete project structure with multiple files
-- Specify that paths should be relative for static hosting
-- Gemini can explain the ZIP structure if you need to create it manually
+2. Tell Gemini: "Publish this to Dropley"
+3. Gemini uses the skill to upload your files and return a shareable URL
 
 ## Example
 
 ```
-Create a landing page for a product launch. Give me the HTML, CSS,
-and JavaScript as separate files with relative paths so I can
-package them as a ZIP for Dropley.
+Create a landing page for a product launch with index.html, styles/main.css,
+and scripts/app.js. Use relative paths. Then publish to Dropley.
 ```
