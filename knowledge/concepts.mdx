@@ -12,7 +12,7 @@ This page explains the core concepts behind Dropley.
 An **artifact** is a published website created from an uploaded ZIP. Every artifact has:
 
 - A unique **shortId** (8-character nanoid, e.g., `abc12345`)
-- A public URL at `https://dropley.app/p/{shortId}`
+- A public URL at `https://preview.dropley.app/p/{shortId}`
 - A **status**: `published` on creation (`failed` if something goes wrong)
 - An **expiration date** after which it's automatically deleted
 
@@ -39,13 +39,13 @@ After expiration, the artifact and all its files are permanently deleted. There 
 Each artifact gets a unique URL that lives for its configured duration. The URL structure is:
 
 ```
-https://dropley.app/p/{shortId}
+https://preview.dropley.app/p/{shortId}
 ```
 
 For ZIP projects, assets within the artifact are served at:
 
 ```
-https://dropley.app/p/{shortId}/{path/to/asset}
+https://preview.dropley.app/p/{shortId}/{path/to/asset}
 ```
 
 ## Upload Source Tag
