@@ -13,6 +13,7 @@
         "group": "Knowledge Base",
         "pages": [
           "knowledge/concepts",
+          "knowledge/features",
           "knowledge/publishing-html",
           "knowledge/publishing-zip",
           "knowledge/faq",
