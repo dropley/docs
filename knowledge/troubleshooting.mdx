@@ -79,6 +79,14 @@ No. Once expired, the artifact is permanently deleted. You need to upload again.
 - Clear your browser cache
 - Check for JavaScript errors in the console
 
+## Machine-Facing API Errors
+
+If you call the Dropley API programmatically (from a script or AI agent), failures on `/api/*` paths return JSON instead of an HTML page. The body is a flat object with four fields: `error`, `code`, `message`, and `hint`.
+
+Requesting an unknown API path returns `404 Not Found` with `"code": "NOT_FOUND"`. Requesting a known API path with a disallowed HTTP method returns `405 Method Not Allowed` with the same shape, plus an `Allow` header listing the supported methods.
+
+The full request and response contract lives in the [API Reference](https://dropley.app/docs/api).
+
 ## Still Stuck?
 
 If you're still having issues, check the [service limits](/knowledge/limits) or browse the [FAQ](/knowledge/faq).

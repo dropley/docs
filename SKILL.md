@@ -120,10 +120,15 @@ Requires the `artifactToken`.
 
 ## References
 
-If a request fails due to validation errors or the API has changed, consult:
+If a request fails (unknown path, disallowed method, or validation error), the response body is a flat JSON object with `error`, `code`, `message`, and `hint` fields — machine-facing API failures never return an HTML page.
 
-- `https://dropley.app/llms.txt`
+If requests fail or the API has changed, consult:
+
+- `https://dropley.app/llms.txt` — machine-readable site index with a "When to use Dropley" summary and developer resources
+- Any dropley.app page (`/features`, `/about`, `/contact`, `/privacy`, `/terms`, `/acceptable-use`) fetched with an `Accept: text/markdown` header returns a Markdown representation
 
 For the complete API specification and request/response schemas:
 
 - `https://dropley.app/api/v1/openapi.json`
+
+This URL also serves byte-identical copies at `https://dropley.app/openapi.json`, `/openapi.yaml`, `/api/openapi.json`, and `/api/openapi.yaml`. Every operation has a stable unique `operationId` (`createArtifact`, `getArtifact`, `updateArtifact`, `deleteArtifact`, `createReport`), so the spec is safe to load directly into function-calling tools and code generators.

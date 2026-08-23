@@ -59,5 +59,9 @@ For programmatic access, see the [API Reference](https://dropley.app/docs/api).
 
 ### AI Agent Resources
 
-- [llms.txt](/llms.txt) — AI agent discovery file
+Dropley is built to be machine-readable:
+
+- [llms.txt](/llms.txt) — AI agent discovery file, including a "When to use Dropley" summary and a developer resources index
+- [OpenAPI spec](https://dropley.app/api/v1/openapi.json) — machine-readable API specification, also served byte-identical at `/openapi.json`, `/openapi.yaml`, `/api/openapi.json`, and `/api/openapi.yaml`
 - [skill.md](/skill) — Official Dropley Skill for coding agents
+- Any dropley.app page (`/features`, `/about`, `/contact`, `/privacy`, `/terms`, `/acceptable-use`) can be fetched as Markdown by sending an `Accept: text/markdown` header
