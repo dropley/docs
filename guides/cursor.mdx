@@ -27,3 +27,7 @@ npx skill add dropley/docs
 Create a personal website with index.html, about.html, styles.css, and images.
 Use relative paths. Then publish to Dropley.
 ```
+
+## For Agents
+
+Dropley is machine-readable: fetch any dropley.app page (for example `/features` or `/about`) with an `Accept: text/markdown` header to get a Markdown version, start from [llms.txt](https://dropley.app/llms.txt) for a site index, and use the [OpenAPI spec](https://dropley.app/api/v1/openapi.json) for programmatic publishing.

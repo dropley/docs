@@ -27,3 +27,7 @@ npx skill add dropley/docs
 Generate a dashboard.html page with a dark theme and three metric cards.
 Use Chart.js from CDN. Keep all CSS inline. Then publish to Dropley.
 ```
+
+## For Agents
+
+Dropley is machine-readable: fetch any dropley.app page (for example `/features` or `/about`) with an `Accept: text/markdown` header to get a Markdown version, start from [llms.txt](https://dropley.app/llms.txt) for a site index, and use the [OpenAPI spec](https://dropley.app/api/v1/openapi.json) for programmatic publishing.
