@@ -17,7 +17,13 @@ Dropley applies strict Content Security Policy (CSP) headers to published artifa
 
 ### No User Accounts
 
-Dropley does not collect or store personal data. There are no accounts, passwords, or sessions. Your artifact token is the only credential for managing your artifact.
+Dropley has no accounts or passwords. Your artifact token is the only credential for managing your artifact, and Dropley does not use cookies for authentication.
+
+### Anonymous Measurement Cookie
+
+On the main Dropley website, we use a first-party anonymous `dropley_session` cookie to understand whether a visitor who lands on a marketing page starts an upload or successfully publishes an artifact. It contains a random identifier only; it is not an account, a login credential, or an artifact token.
+
+The cookie is host-only, `HttpOnly`, `Secure`, and `SameSite=Lax`, with a 90-day lifetime. It is not shared with the separate published-artifact origin. The related measurement records retain only normalized discovery source, medium, optional campaign, and landing path—not full referrer URLs, arbitrary query strings, IP addresses, uploaded files, artifact tokens, or email addresses. See the [Privacy Policy](https://dropley.app/privacy) for details.
 
 ### Abuse Protection
 
