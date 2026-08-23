@@ -106,7 +106,7 @@ Returns the artifact metadata and current status.
 
 **Endpoint:** `PATCH /api/artifacts/{id}`
 
-Requires the `artifactToken` returned during artifact creation, passed in the `X-Artifact-Token` header. Supports updating artifact metadata and replacing uploaded files.
+Requires the `artifactToken` returned during artifact creation, passed in the `X-Artifact-Token` header. Supports updating artifact metadata (`source`, `expiry`, `tags`). Files cannot be replaced.
 
 ---
 
