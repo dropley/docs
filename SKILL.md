@@ -72,8 +72,8 @@ Completion criterion: manifest constructed, entry named `index.html`.
 
 | Field | Description |
 |------|-------------|
-| `expiry` | `1d`, `3d`, `7d`, `15d`, or `30d` (default `7d`) |
-| `source` | Optional identifier of the uploading client (for example: `claude-code`, `codex`, `continue`) |
+| `expiry` | `1d`, `3d`, or `7d` (default `3d`) |
+| `source` | Optional identifier of the uploading client. One of: `claude-code`, `chatgpt`, `cursor`, `lovable`, `bolt`, `storybook`, `figma`, `other` |
 | `tags` | Array of up to 10 strings |
 
 Completion criterion: response received with HTTP 2xx.
@@ -106,7 +106,7 @@ Returns the artifact metadata and current status.
 
 **Endpoint:** `PATCH /api/artifacts/{id}`
 
-Requires the `artifactToken` returned during artifact creation. Supports updating artifact metadata and replacing uploaded files.
+Requires the `artifactToken` returned during artifact creation, passed in the `X-Artifact-Token` header. Supports updating artifact metadata and replacing uploaded files.
 
 ---
 
@@ -114,7 +114,7 @@ Requires the `artifactToken` returned during artifact creation. Supports updatin
 
 **Endpoint:** `DELETE /api/artifacts/{id}`
 
-Requires the `artifactToken`.
+Requires the `artifactToken` in the `X-Artifact-Token` header.
 
 ---
 
