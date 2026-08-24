@@ -1,28 +1,75 @@
 ---
-title: "Publishing HTML Projects"
-description: "Requirements and best practices for publishing single HTML pages on Dropley."
+title: "How to Share an HTML File Online"
+description: "Upload an index.html file, folder, or ZIP to get a live link you can share without GitHub or a server."
 ---
 
-# Publishing a Single HTML Page
+# How to Share an HTML File Online
 
-Dropley makes it easy to publish a single HTML page. You can upload it as a ZIP, a loose file, or inside a folder.
+To share a static HTML file online, name the entry page `index.html`, upload it to Dropley, then send the live URL to the people who need to see it. You do not need to set up a GitHub repository, web server, or deployment project for a finished static page.
+
+This guide covers the simplest case: one HTML page. If your page uses local CSS, JavaScript, images, or fonts, upload the complete folder or a ZIP instead so those files can be served together.
+
+## 1. Prepare your entry page
+
+Your page must be named **`index.html`**. A self-contained page is the easiest format to share because its styles and scripts live in the same file.
+
+Here is a small example you can save as `index.html` and upload as-is:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project update</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 3rem; }
+  </style>
+</head>
+<body>
+  <h1>Project update</h1>
+  <p>This page is ready to share.</p>
+</body>
+</html>
+```
+
+## 2. Upload it and share the live URL
+
+1. Open [Dropley](https://dropley.app).
+2. Drag your `index.html` file onto the upload area.
+3. Wait for publishing to finish.
+4. Copy the resulting URL and share it in a message, document, or email.
+
+The URL shows the rendered page in a browser; recipients do not need your local files or development environment.
+
+## Choose the right upload format
+
+| Your project | Upload it as | Why |
+| --- | --- | --- |
+| One self-contained page | A loose `index.html` file | The HTML, CSS, and JavaScript are all in one file. |
+| A page with local assets | A folder or [ZIP project](/knowledge/publishing-zip) | Keeps relative paths to CSS, JavaScript, images, and fonts intact. |
+| A generated static site | A folder or [ZIP project](/knowledge/publishing-zip) | Publishes the finished static output, including its entry page and assets. |
 
 ## Requirements
 
-Your HTML page must:
+Use **relative paths** for any local asset references. For example, use `images/chart.png` rather than a local computer path or an absolute site-root path. Dropley automatically uses the shallowest matching `index.html`; there is no entry-point setting during upload.
 
-1. Be named **`index.html`**
-2. Use **relative paths** for any local asset references
+`index.html` can be at the top of a folder or nested inside it. If a project contains multiple entry pages, make sure the shallowest one is the page you intend to share.
 
-`index.html` can be at the top of a folder or nested inside it. Dropley automatically uses the shallowest matching `index.html`; there is no entry-point setting during upload.
+## When to upload a folder or ZIP instead
 
-## Uploading
+Upload a folder or ZIP when your page references files that are not embedded in the HTML. Keep the folder structure exactly as your HTML expects:
 
-You can upload a single HTML page in several ways:
+```text
+my-site/
+├── index.html
+├── styles.css
+├── app.js
+└── images/
+    └── chart.png
+```
 
-- **As a loose file**: Drag `index.html` directly onto the upload area
-- **In a ZIP**: Package it as `index.html` inside a ZIP archive
-- **In a folder**: Drag a folder containing `index.html`
+Then reference those files with relative paths such as `styles.css`, `app.js`, and `images/chart.png`. See [Publishing ZIP Projects](/knowledge/publishing-zip) for supported file types and project-specific guidance.
 
 ## Best Practices
 
@@ -75,3 +122,5 @@ If your page references local CSS, JS, or images, upload the whole folder struct
 - Large files may take longer to upload
 - HTML files with absolute local paths (`file:///`) won't work in the browser after publishing
 - JavaScript that relies on server-side processing won't work
+
+For upload-size and expiry details, see [service limits](/knowledge/limits). If your page loads without styles, images, or scripts, use the checks in [Troubleshooting](/knowledge/troubleshooting).
