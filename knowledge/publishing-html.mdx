@@ -11,8 +11,10 @@ Dropley makes it easy to publish a single HTML page. You can upload it as a ZIP,
 
 Your HTML page must:
 
-1. Be named **`index.html`** (or nest it and specify the entry point)
+1. Be named **`index.html`**
 2. Use **relative paths** for any local asset references
+
+`index.html` can be at the top of a folder or nested inside it. Dropley automatically uses the shallowest matching `index.html`; there is no entry-point setting during upload.
 
 ## Uploading
 
