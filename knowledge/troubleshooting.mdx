@@ -30,16 +30,16 @@ This usually means Dropley couldn't extract or validate your ZIP. Try:
 
 1. Re-zip your project
 2. Make sure the ZIP isn't corrupted
-3. Verify your entry point path is correct
+3. Verify the project includes an `index.html` file
 4. Check all files are supported types
 
-### "Entry point not found"
+### "No index.html found"
 
-Dropley couldn't find the entry HTML file at the path you specified. Make sure:
+Dropley couldn't find an `index.html` file in the upload. Make sure:
 
-- The file exists in your ZIP
-- The path is correct
-- The file name matches exactly (case-sensitive)
+- The file is included in your ZIP, folder, or loose-file upload
+- The file name is exactly `index.html`
+- If your project has multiple `index.html` files, the one you want served is nearest the top of the project structure
 
 ## Serving Issues
 
