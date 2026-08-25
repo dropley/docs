@@ -1,11 +1,23 @@
 ---
-title: "Publishing ZIP Projects"
-description: "How to structure and publish ZIP projects with multiple files on Dropley."
+title: "How to Upload a ZIP and Publish a Static Website"
+description: "Turn a completed static website ZIP into a live shareable URL, with the right index.html and asset paths."
 ---
 
-# Publishing ZIP Projects
+# How to Upload a ZIP and Publish a Static Website
 
-For complex projects with multiple files (HTML, CSS, JS, images, fonts), you can publish a ZIP archive. This guide covers the expected structure and requirements.
+To publish a static website from a ZIP, put the finished site files—including an `index.html` entry page—into the archive, upload it to [Dropley](https://dropley.app), choose an expiration, and share the live URL. Dropley keeps your HTML, CSS, JavaScript, images, and fonts together so their relative paths continue to work.
+
+Use this route when a website has more than one file. For one self-contained page, [share an HTML file directly](/knowledge/publishing-html) instead.
+
+## Before you upload
+
+Your ZIP must contain the **finished static output**, not the source project that needs a server or build command. It should include:
+
+- an `index.html` file to open first;
+- the CSS, JavaScript, images, and fonts that `index.html` references;
+- relative asset paths that match the folders in the archive.
+
+For example, if you built a project with a framework, upload its exported static output only after it contains an `index.html` and the assets it needs. A project that requires Node.js, PHP, Python, a database, server-side rendering, or an API you have not made publicly available cannot run on Dropley.
 
 ## Project Structure
 
@@ -36,6 +48,16 @@ my-project.zip
 
 Dropley automatically finds and serves `src/index.html`. There is no entry-point setting during upload.
 
+## Upload and share your site
+
+1. Check that the ZIP contains the finished static files and at least one `index.html`.
+2. Open [dropley.app](https://dropley.app) and drag the ZIP onto the upload area, or select it from your computer.
+3. Choose how long the link should remain available: 1 day, 3 days, or 7 days.
+4. Wait for publishing to finish, then copy the generated URL and open it once in a browser.
+5. Send that URL to the people who need to view the site.
+
+The URL is a public, temporary share link. Once its selected expiration passes, the artifact is deleted; upload it again if you need a new link. See [service limits](/knowledge/limits) for the current file, path, and expiration constraints.
+
 ### Supported File Types
 
 | Extension | Type |
@@ -51,40 +73,39 @@ Dropley automatically finds and serves `src/index.html`. There is no entry-point
 | `.webp` | WebP images |
 | `.woff`, `.woff2` | Web fonts |
 
-Files with other extensions are rejected during upload.
+Files with other extensions are not included in the published artifact. Keep only supported site assets in the ZIP, and make sure your page does not reference unsupported files.
 
-## Best Practices
+## Make the site work after upload
 
-### Use Relative Paths
+### Prefer relative paths
 
-All internal references must use **relative paths**:
+Relative paths keep an exported project portable and match the folder structure in the ZIP:
 
 ```html
-<!-- Correct -->
+<!-- Preferred -->
 <link rel="stylesheet" href="styles/main.css">
 <script src="scripts/app.js"></script>
 <img src="images/logo.png" alt="Logo">
 
-<!-- Incorrect — absolute paths won't resolve locally -->
+<!-- Also supported in HTML: Dropley rewrites this root-relative asset path -->
 <link rel="stylesheet" href="/styles/main.css">
 ```
 
-### Organize Assets
+External URLs such as `https://example.com/style.css` are not included in the ZIP and remain dependent on that external service.
 
-Keep your project organized with clear directory names. This makes it easier to maintain and debug.
+### Keep the archive ready to serve
 
-### Keep It Reasonable
+Keep the folders in the ZIP exactly as the HTML expects them. Do not upload only `index.html` when it references separate local files. For example, this link expects the `images` folder to travel with it:
 
-Very large ZIPs (50MB+) may fail or take too long to upload. Optimize images and remove unused files before zipping.
+```html
+<img src="images/logo.png" alt="Logo">
+```
 
-## Upload Process
+After publishing, open the share link before sending it. If the page is blank or an asset is missing, compare the referenced path with the ZIP structure and check the browser console. The [troubleshooting guide](/knowledge/troubleshooting) covers common upload and serving failures.
 
-1. Create your ZIP with the structure above
-2. Go to [dropley.app](https://dropley.app)
-3. Drag and drop or click to upload
-4. Confirm the ZIP contains an `index.html` file
-5. Choose your expiration
-6. Get your URL
+### Stay within the supported limits
+
+ZIPs are limited to 50 MB per upload and 1,000 files. Entries with unsupported extensions are not included or served, so remove them and make sure the site does not depend on them. Optimize large images, remove unused files, and review the [supported types and full limits](/knowledge/limits) before uploading.
 
 ## What Gets Served
 
@@ -102,9 +123,8 @@ Served as:
   https://preview.dropley.app/p/abc12345/scripts/app.js
 ```
 
-## Limitations
+## What Dropley can and cannot publish
 
-- Dropley does not execute server-side code (PHP, Python, Node.js, etc.)
-- Server-side includes and SSI are not supported
-- Database-backed applications won't work (no MySQL/PostgreSQL)
-- Dropley is for static site hosting only
+Dropley serves a static website: files the visitor’s browser can load, such as HTML, CSS, JavaScript, images, and fonts. It does not execute server-side code, run server-side includes, or provide a database. If your site depends on one of those services, publish a static export only when it can work without them.
+
+For the underlying terminology and lifecycle, see [core concepts](/knowledge/concepts). For a complete one-file page, see [how to share an HTML file online](/knowledge/publishing-html).
