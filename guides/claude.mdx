@@ -1,33 +1,48 @@
 ---
-title: "Claude Guide"
-description: "How to publish Dropley artifacts using Claude."
+title: "How to Share a Claude HTML Artifact With Anyone"
+description: "Turn a completed Claude Code HTML artifact into a temporary live URL that anyone can open."
 ---
 
-# Publishing with Claude
+# How to Share a Claude HTML Artifact With Anyone
 
-Claude can publish artifacts to Dropley directly.
+To share a completed Claude Code HTML artifact outside Claude, save its static output as `index.html` (or as a folder or ZIP when it has local files), publish it to Dropley, and send the resulting live URL. This is useful when you need a standalone, temporary link for a finished static page such as a report, dashboard, or prototype.
 
-## Setup
+This guide is for output that can run as static HTML in a browser. It is not a replacement for [Claude's own Artifact publishing](https://support.claude.com/en/articles/9547008-publish-and-share-artifacts): use Claude's native sharing when you want the artifact to stay in Claude. Use Dropley only after you have a completed static file or project you intend to share publicly.
 
-Tell Claude to install the Dropley skill:
+## 1. Choose the right output to publish
+
+| Your Claude Code output | Publish it as | Why |
+| --- | --- | --- |
+| One self-contained page | A loose `index.html` file | The HTML, CSS, and JavaScript are all in one file. |
+| A page with local CSS, JavaScript, images, or fonts | A folder or ZIP archive | The files keep their relative paths when served together. |
+| A project that still needs a build, server, database, or API | Do not publish it as-is | Export a finished static version first; Dropley does not run server-side code. |
+
+For a one-file page, ask Claude Code to save the finished result as `index.html`. For a multi-file result, keep the complete folder structure and use relative references such as `styles.css`, `scripts/app.js`, and `images/chart.png`. See [how to share an HTML file online](/knowledge/publishing-html) and [how to publish a ZIP static website](/knowledge/publishing-zip) for the full upload requirements.
+
+## 2. Publish the completed static output
+
+If you use the Dropley skill with Claude Code, install it in your project first:
 
 ```
-npx skill add dropley/docs
+npx skills@latest add dropley/docs
 ```
 
-## Workflow
-
-1. Ask Claude to generate your project (HTML page, dashboard, etc.)
-2. Tell Claude: "Publish this to Dropley"
-3. Claude uses the skill to upload your files and return a shareable URL
+Then give Claude Code a specific publishing request. If you are not using the skill, upload the same `index.html`, folder, or ZIP yourself in the browser.
 
 ## Example Prompt
 
 ```
-Build a personal portfolio page with index.html, styles/main.css, and scripts/app.js.
-Use relative paths. Then publish it to Dropley.
+Create a finished static project for this dashboard. Save the entry page as
+index.html, keep local assets in relative paths, and do not use server-side code.
+Publish the completed project to Dropley and return the shareable URL.
 ```
 
-## For Agents
+Choose an expiration when you publish. Dropley links are temporary—available for 1, 3, or 7 days—so open the URL once before you send it and upload again if you need a new link later. See [core concepts](/knowledge/concepts) for the artifact lifecycle.
 
-Dropley is machine-readable: fetch any dropley.app page (for example `/features` or `/about`) with an `Accept: text/markdown` header to get a Markdown version, start from [llms.txt](https://dropley.app/llms.txt) for a site index, and use the [OpenAPI spec](https://dropley.app/api/v1/openapi.json) for programmatic publishing.
+## 3. Share only material intended to be public
+
+Review the HTML, visible data, and local assets before publishing. The generated Dropley URL is a public share link, so anyone you send it to can open it until it expires. Do not use this workflow for content that needs authentication, private access control, permanent hosting, or a custom domain.
+
+If the page is missing styles, images, or scripts after publishing, confirm that you uploaded the complete folder or ZIP and that its paths are relative. The [troubleshooting guide](/knowledge/troubleshooting) covers common upload and serving problems; [service limits](/knowledge/limits) lists file, path, and expiry constraints.
+
+<a href="https://dropley.app/?utm_source=referral&utm_medium=referral&utm_campaign=claude-html-guide">Publish a completed Claude HTML artifact</a>
