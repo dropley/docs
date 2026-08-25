@@ -5,7 +5,7 @@ description: "Turn a completed static website ZIP into a live shareable URL, wit
 
 # How to Upload a ZIP and Publish a Static Website
 
-To publish a static website from a ZIP, put the finished site files—including an `index.html` entry page—into the archive, upload it to [Dropley](https://dropley.app), choose an expiration, and share the live URL. Dropley keeps your HTML, CSS, JavaScript, images, and fonts together so their relative paths continue to work.
+To publish a static website from a ZIP, put the finished site files—including an `index.html` entry page—into the archive, drop it on the homepage canvas at [Dropley](https://dropley.app), and share the live URL. Dropley keeps your HTML, CSS, JavaScript, images, and fonts together so their relative paths continue to work.
 
 Use this route when a website has more than one file. For one self-contained page, [share an HTML file directly](/knowledge/publishing-html) instead.
 
@@ -51,12 +51,14 @@ Dropley automatically finds and serves `src/index.html`. There is no entry-point
 ## Upload and share your site
 
 1. Check that the ZIP contains the finished static files and at least one `index.html`.
-2. Open [dropley.app](https://dropley.app) and drag the ZIP onto the upload area, or select it from your computer.
-3. Choose how long the link should remain available: 1 day, 3 days, or 7 days.
-4. Wait for publishing to finish, then copy the generated URL and open it once in a browser.
+2. Open [dropley.app](https://dropley.app) and drag the ZIP anywhere onto the page, click the canvas and select it from your computer, or press Tab and then Enter to open the file picker.
+3. Wait for publishing to finish, then copy the generated URL and open it once in a browser.
+4. If you need a different lifetime than the default 3 days, set **1, 3, or 7 days** in the manage panel under your URL.
 5. Send that URL to the people who need to view the site.
 
-The URL is a public, temporary share link. Once its selected expiration passes, the artifact is deleted; upload it again if you need a new link. See [service limits](/knowledge/limits) for the current file, path, and expiration constraints.
+If publishing fails — most often an oversized ZIP or a missing `index.html` — the [troubleshooting guide](/knowledge/troubleshooting) lists specific fixes for each case.
+
+The URL is a public, temporary share link. The default lifetime of 3 days applies automatically at publish, and every artifact expires — there is no permanent option. Once its expiration passes, the artifact is deleted; publish it again if you need a new link. See [service limits](/knowledge/limits) for the current file, path, and expiration constraints.
 
 ### Supported File Types
 

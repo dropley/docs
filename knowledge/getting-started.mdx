@@ -5,7 +5,7 @@ description: "Publish your first artifact on Dropley in under a minute."
 
 # Getting Started
 
-This guide walks you through publishing your first artifact on Dropley. You'll have a publicly shareable URL in under a minute.
+This guide walks you through publishing your first artifact on Dropley. Drop your project onto the homepage canvas and you'll have a publicly shareable URL in under a minute.
 
 ## Prerequisites
 
@@ -23,21 +23,31 @@ This guide walks you through publishing your first artifact on Dropley. You'll h
 
   Make sure your project includes an `index.html`. Assets (CSS, JS, images) can be at relative paths. Package into a ZIP, or keep your folder structure as-is. If there is more than one `index.html`, Dropley uses the one nearest the top of the project.
 
-  ### Upload to Dropley
+  ### Upload on the homepage canvas
 
-  Go to [dropley.app](https://dropley.app) and drag your files onto the upload area. You can drop a ZIP, a folder, or multiple files. Or click the upload area to select files from your computer.
+  Go to [dropley.app](https://dropley.app). The entire homepage is your upload canvas — there's no separate upload form. Publish in whichever way suits you:
 
-  ### Set expiration
+  - **Drag and drop**: drag a ZIP, a folder, or multiple files anywhere onto the page
+  - **Click**: click the canvas and select files from your computer
+  - **Keyboard**: press Tab until the canvas is focused, then Enter to open the file picker
 
-  Choose how long your artifact should live: **1 day, 3 days, or 7 days**. The default is 3 days.
+  If publishing fails, the page tells you what went wrong — work through the fixes in [Troubleshooting](/knowledge/troubleshooting).
 
   ### Get your URL
 
-  After uploading, you'll receive a public URL like `https://preview.dropley.app/p/abc12345`. Share it with anyone.
+  Your artifact goes live as soon as publishing finishes, with a public URL like `https://preview.dropley.app/p/abc12345`. You don't pick an expiration before uploading: the default lifetime of **3 days** applies automatically at publish. Every artifact expires — there is no permanent option.
 
-  ### Share
+  ### Adjust expiry and tags
 
-  That's it. Your artifact is live. Share the URL via chat, email, or embed it anywhere.
+  An inline manage panel appears under your URL right after publishing. From there you can:
+
+  - Change the expiration to **1, 3, or 7 days**
+  - Add an optional **source tag** noting what created the artifact (for example, an AI assistant such as Claude Code or Cursor)
+  - Edit the artifact's tags, when tag editing is enabled
+
+  ### Share and revisit
+
+  That's it. Share the URL via chat, email, or embed it anywhere. A **recent publishes** strip keeps your last few publishes handy so you can reopen or forget them. This history lives only in your browser — Dropley has no accounts or dashboard, so it isn't synced anywhere.
 </Steps>
 
 ## Next Steps
