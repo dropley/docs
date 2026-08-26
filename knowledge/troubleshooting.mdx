@@ -46,13 +46,13 @@ Dropley couldn't find an `index.html` file in the upload. Make sure:
 ### Page shows blank or broken
 
 - Check your HTML for syntax errors
-- Verify all asset paths are **relative**, not absolute
+- Prefer relative asset paths, and make sure every path matches the uploaded folder structure
 - Open browser dev tools (F12) and check the Console/Network tabs for errors
 
 ### CSS/JS not loading
 
 - Make sure the file paths in your HTML match the ZIP structure
-- All paths must be relative (not starting with `/`)
+- Prefer relative paths such as `scripts/app.js`; supported root-relative HTML asset paths such as `/scripts/app.js` are rewritten when served
 - Check that file extensions match the supported types
 
 ### Images not displaying

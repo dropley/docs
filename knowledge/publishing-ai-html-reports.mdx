@@ -1,0 +1,101 @@
+---
+title: "How to Publish an AI-Generated HTML Report or Dashboard"
+description: "Turn a completed AI-generated HTML report or dashboard into a temporary live link, with the right files, paths, and sharing checks."
+---
+
+# How to Publish an AI-Generated HTML Report or Dashboard
+
+To publish an AI-generated HTML report or dashboard, save the finished static output as `index.html`, upload it to [Dropley](https://dropley.app), then share the live URL. If the page has local CSS, JavaScript, images, fonts, or data files, upload the complete folder or ZIP instead of the HTML file alone.
+
+This workflow is for a finished browser-based report, dashboard, or prototype from any AI tool. It does not turn a report that needs a private database, server, login, or API key into a safe public page.
+
+## Check what the report needs before you publish
+
+Choose the upload format from the files your browser needs:
+
+| Your finished output | Upload it as | Why |
+| --- | --- | --- |
+| One self-contained report | A loose `index.html` file | Its markup, styles, scripts, and data are embedded or loaded from URLs you intend to keep public. |
+| A report with local assets or data | A folder or [ZIP project](/knowledge/publishing-zip) | Its relative file paths stay together when Dropley serves the artifact. |
+| An app that needs a server, database, private API, or authentication | Do not publish it as-is | Export a static version first, or use a sharing method designed for that access model. |
+
+Dropley serves static files only. It requires an `index.html` entry page and automatically uses the shallowest one if an upload contains more than one.
+
+## Prepare a small, shareable report
+
+For a one-file report, ask your AI tool to write a complete `index.html` with inline CSS and JavaScript. Review the result before sharing it; the link is public to anyone who receives it until it expires.
+
+For example, this is the shape of a self-contained report you can save as `index.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly delivery report</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 3rem; }
+    .metric { font-size: 2rem; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <h1>Weekly delivery report</h1>
+  <p class="metric">96% on-time</p>
+  <p>Prepared for the project review.</p>
+</body>
+</html>
+```
+
+If the report uses `charts.js`, `data/summary.json`, or `images/logo.svg`, keep those files in the same folder and use paths that match it:
+
+```text
+weekly-report/
+├── index.html
+├── charts.js
+├── data/
+│   └── summary.json
+└── images/
+    └── logo.svg
+```
+
+Then upload the folder or create a ZIP containing that structure. [Publishing a ZIP static website](/knowledge/publishing-zip) explains supported file types and limits.
+
+## Publish and test the live link
+
+1. Open [Dropley](https://dropley.app).
+2. Drag `index.html`, the folder, or the ZIP onto the homepage canvas; you can also click the canvas to choose it from your computer.
+3. Wait until publishing finishes, then open the generated URL in a browser.
+4. Check the main report, charts, images, filters, and links before you send the URL.
+5. Choose a 1-, 3-, or 7-day lifetime in the manage panel. The default is 3 days; every artifact expires and is deleted afterward.
+
+For a report created with an assistant, you can make the generation request explicit:
+
+```
+Create a finished static HTML report. Use index.html as the entry page,
+keep any local assets in relative paths, do not include credentials or private
+data, and do not require server-side code. Save the completed output so I can
+upload it to Dropley and share the URL.
+```
+
+If your assistant has the Dropley publishing capability, you can instead ask it to publish the completed output and return the URL. The [Claude HTML artifact guide](/guides/claude) explains that workflow for Claude Code. The [HTML publishing guide](/knowledge/publishing-html) covers the simplest one-file case.
+
+## Common report and dashboard failures
+
+### The upload says `index.html` is missing
+
+Rename the finished entry page to exactly `index.html`, then include it in the loose-file, folder, or ZIP upload. If the project has several entry pages, place the one you want to share closest to the top of the folder structure.
+
+### Charts, images, or styles are missing
+
+Upload the complete folder or ZIP—not only `index.html`—when it references local files. Check that each path matches the uploaded structure. Relative paths such as `images/logo.svg` are portable; root-relative asset paths such as `/images/logo.svg` are also rewritten for supported HTML assets. Do not use paths to files on your computer such as `file:///Users/...`.
+
+### The report works locally but not from the link
+
+Static HTML can run in a browser, but Dropley does not run a server, database, server-side code, or private API. Replace unavailable dependencies with an exported static result or a public endpoint you have reviewed for that purpose. Never embed credentials, tokens, or confidential data in a public report.
+
+### The link needs to last longer or be private
+
+Dropley links are public and temporary, not permanent hosting or access control. For the current upload and expiration constraints, see [service limits](/knowledge/limits) and [core concepts](/knowledge/concepts).
+
+<a href="https://dropley.app/?utm_source=referral&utm_medium=referral&utm_campaign=ai-html-report-guide">Publish a completed HTML report or dashboard</a>
