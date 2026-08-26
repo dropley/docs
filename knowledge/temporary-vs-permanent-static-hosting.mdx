@@ -1,0 +1,80 @@
+---
+title: "Temporary Static Hosting vs. Permanent Hosting"
+description: "Choose a short-lived public link for a finished static preview, or permanent hosting for an ongoing site."
+---
+
+# Temporary Static Hosting vs. Permanent Hosting
+
+Use a temporary Dropley link when you have a finished static page or site that you can share publicly for a short time: a design review, a report, a demo, or a handoff. Use a permanent hosting service instead when the site must stay available, use a custom domain or sign-in, run server-side code, or depend on a database.
+
+Dropley is for the first case. It publishes finished static files to a public URL, then deletes the artifact when its selected lifetime ends. It is not a way to run an ongoing application.
+
+## Choose the workflow that matches the job
+
+| If you need to… | Choose | Why |
+| --- | --- | --- |
+| Let someone open a finished HTML preview, report, or demo for a few days | A temporary Dropley link | It is public, does not require an account, and is available for 1, 3, or 7 days. |
+| Share a multi-file static export for a review | A temporary Dropley link | Upload the complete folder or ZIP so its relative assets can load together. |
+| Keep a site online indefinitely | Permanent hosting | Dropley does not offer a never-expire option. |
+| Use a custom domain, authentication, a server, or a database | A service that provides those capabilities | Dropley serves browser-ready static files only. |
+| Share anything sensitive | Do not use a public Dropley link | Anyone with the URL can open it until it expires. |
+
+For the underlying lifecycle, see [Concepts](/knowledge/concepts). For file and expiry limits, see [Service limits](/knowledge/limits).
+
+## What “temporary” means on Dropley
+
+Every published artifact gets a public URL. After publishing, the manage panel lets you choose its lifetime:
+
+| Lifetime | Good fit |
+| --- | --- |
+| 1 day | A quick review or a short-lived handoff |
+| 3 days | The default for a short demo or feedback round |
+| 7 days | The longest available window for a temporary share |
+
+The countdown starts when publishing succeeds. When it ends, Dropley permanently deletes the artifact and its files; the old URL no longer works. You cannot extend an expired artifact, so upload the finished files again when you need a new link.
+
+That makes a temporary link useful when the recipient only needs a finished static result for a defined window. It is a poor fit for a portfolio, documentation site, customer-facing application, or any link that must remain stable.
+
+## Publish a single-file preview
+
+For one self-contained page, save the finished page as `index.html`. Put its CSS and JavaScript inline, or use dependencies that the browser can load from a public URL.
+
+1. Open the [HTML publishing guide](/knowledge/publishing-html) and confirm the page is named `index.html`.
+2. Upload that file to the Dropley homepage canvas.
+3. Wait for the public URL, then choose 1, 3, or 7 days in the manage panel.
+4. Open the live URL yourself before you send it, then share it with the people who need to review it.
+
+This is a useful shape for a static status update, a finished AI-generated report, or a small prototype that has no local assets.
+
+## Publish a multi-file static project
+
+For a site with local CSS, JavaScript, images, or fonts, upload the entire finished folder or ZIP. The archive needs an `index.html` entry page and the assets it references.
+
+```text
+project/
+├── index.html
+├── styles/
+│   └── main.css
+├── scripts/
+│   └── app.js
+└── images/
+    └── chart.png
+```
+
+Use relative references such as `styles/main.css` and `images/chart.png`, then follow the [ZIP static website guide](/knowledge/publishing-zip). Once it publishes, open the public URL and visit the important paths before sharing it. This catches missing assets while you still have the original folder.
+
+## Check these limits before you share
+
+- **Missing entry page:** rename the intended first page to exactly `index.html`.
+- **Broken local assets:** include every referenced asset in the folder or ZIP and use relative paths. A path such as `file:///Users/...` works only on your computer.
+- **Server-backed project:** export a finished static version only if it can run in a browser without Node.js, PHP, Python, server-side rendering, or a database.
+- **Sensitive material:** do not publish it. The URL is public while it is live; read the [security guidance](/knowledge/security) before sharing.
+- **A page that is still broken after publishing:** use the browser Console and Network panels, then follow the [troubleshooting guide](/knowledge/troubleshooting).
+
+## When permanent hosting is the better answer
+
+Choose permanent hosting when a recipient needs a stable address, when visitors must sign in, or when the project needs a custom domain, server logic, a private API, or persistent data. A temporary public link does not replace those needs.
+
+If the work is a completed static artifact that can be public for a defined window, publish it as a temporary link instead.
+
+<a href="https://dropley.app/?utm_source=referral&utm_medium=referral&utm_campaign=temporary-hosting-guide">Publish a finished static preview with a temporary link</a>
