@@ -7,7 +7,7 @@ description: "Choose a short-lived public link for a finished static preview, or
 
 Use a temporary Dropley link when you have a finished static page or site that you can share publicly for a short time: a design review, a report, a demo, or a handoff. Use a permanent hosting service instead when the site must stay available, use a custom domain or sign-in, run server-side code, or depend on a database.
 
-Dropley is for the first case. It publishes finished static files to a public URL, then deletes the artifact when its selected lifetime ends. It is not a way to run an ongoing application.
+Dropley is for the first case. It publishes finished static files to a public URL with a selected availability window, then permanently deletes expired artifacts through scheduled cleanup. It is not a way to run an ongoing application.
 
 ## Choose the workflow that matches the job
 
@@ -17,7 +17,7 @@ Dropley is for the first case. It publishes finished static files to a public UR
 | Share a multi-file static export for a review | A temporary Dropley link | Upload the complete folder or ZIP so its relative assets can load together. |
 | Keep a site online indefinitely | Permanent hosting | Dropley does not offer a never-expire option. |
 | Use a custom domain, authentication, a server, or a database | A service that provides those capabilities | Dropley serves browser-ready static files only. |
-| Share anything sensitive | Do not use a public Dropley link | Anyone with the URL can open it until it expires. |
+| Share anything sensitive | Do not use a public Dropley link | The link is public during its selected availability window; do not rely on it after that window ends. |
 
 For the underlying lifecycle, see [Concepts](/knowledge/concepts). For file and expiry limits, see [Service limits](/knowledge/limits).
 
