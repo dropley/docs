@@ -15,19 +15,14 @@ This guide is for output that runs as static HTML in a browser. Build or export
 the finished static version first if the project needs a server, database,
 server-side rendering, or a private API; Dropley does not run those services.
 
-## 1. Prepare the static output
+## 1. Give Codex a publishable result
 
-| Your Codex output | Publish it as | Why |
-| --- | --- | --- |
-| One self-contained page | A loose `index.html` file | The HTML, CSS, and JavaScript are all in one file. |
-| A page with local CSS, JavaScript, images, or fonts | A folder or ZIP archive | The files keep their relative paths when served together. |
-| A project that still needs a build, server, database, or API | Do not publish it as-is | Export a finished static version first. |
-
-Ask Codex to make the entry page exactly `index.html`. For a multi-file result,
-keep the complete folder structure and use relative references such as
-`styles.css`, `scripts/app.js`, and `images/chart.png`. Read [how to share an
-HTML file online](/knowledge/publishing-html) or [how to publish a ZIP static
-website](/knowledge/publishing-zip) for the full upload requirements.
+For one self-contained page, ask Codex to save the entry page as exactly
+`index.html`. When the result uses local CSS, JavaScript, images, or fonts, keep
+the complete folder or ZIP and use relative references such as `styles.css` or
+`images/chart.png`. The [HTML publishing guide](/knowledge/publishing-html) and
+[ZIP publishing guide](/knowledge/publishing-zip) are the canonical references
+for choosing the right upload and preserving its files.
 
 ## 2. Install the Dropley skill
 
@@ -51,10 +46,9 @@ index.html, keep local assets in relative paths, and do not use server-side
 code. Publish the completed project to Dropley and return the shareable URL.
 ```
 
-The resulting link is public and temporary. Dropley offers 1-, 3-, and 7-day
-lifetimes, with 3 days as the default. Open the URL once before you send it and
-upload again if you need a new link later; [core concepts](/knowledge/concepts)
-explains the artifact lifecycle.
+The resulting link is public and temporary. It is available for 1, 3, or 7
+days, with 3 days as the default. Check the live URL before sharing it; see
+[core concepts](/knowledge/concepts) for the full artifact lifecycle.
 
 ## 4. Check the published page before sharing
 
@@ -63,10 +57,9 @@ the resulting URL can open it until it expires, so do not use this workflow for
 content that needs authentication, private access control, permanent hosting,
 or a custom domain.
 
-If styles, images, or scripts are missing, confirm that you uploaded the
-complete folder or ZIP and that its paths are relative. The
-[troubleshooting guide](/knowledge/troubleshooting) covers common upload and
-serving failures, and [service limits](/knowledge/limits) lists file, path,
-and expiry constraints.
+If the live page is missing styles, images, or scripts, verify that the complete
+folder or ZIP was included and the paths are relative. Use
+[troubleshooting](/knowledge/troubleshooting) for failure checks and [service
+limits](/knowledge/limits) for file, path, and expiry constraints.
 
 <a href="https://dropley.app/?utm_source=referral&utm_medium=referral&utm_campaign=codex-publishing-guide">Publish a completed Codex website</a>
