@@ -1,33 +1,72 @@
 ---
-title: "GitHub Copilot / Codex Guide"
-description: "How to publish Dropley artifacts using GitHub Copilot and OpenAI Codex."
+title: "How to Publish a Codex-Generated Website"
+description: "Turn a completed Codex HTML artifact or static site into a temporary live URL anyone can open."
 ---
 
-# Publishing with GitHub Copilot / Codex
+# How to Publish a Codex-Generated Website
 
-GitHub Copilot and OpenAI Codex can publish artifacts to Dropley directly.
+To share a completed website made with OpenAI Codex, save its static output as
+`index.html` (or as a folder or ZIP when it has local files), publish it to
+Dropley, and send the resulting temporary live URL. This is useful for a
+finished report, dashboard, prototype, or small static site that someone needs
+to open outside your coding environment.
 
-## Setup
+This guide is for output that runs as static HTML in a browser. Build or export
+the finished static version first if the project needs a server, database,
+server-side rendering, or a private API; Dropley does not run those services.
 
-Tell the agent to install the Dropley skill:
+## 1. Prepare the static output
+
+| Your Codex output | Publish it as | Why |
+| --- | --- | --- |
+| One self-contained page | A loose `index.html` file | The HTML, CSS, and JavaScript are all in one file. |
+| A page with local CSS, JavaScript, images, or fonts | A folder or ZIP archive | The files keep their relative paths when served together. |
+| A project that still needs a build, server, database, or API | Do not publish it as-is | Export a finished static version first. |
+
+Ask Codex to make the entry page exactly `index.html`. For a multi-file result,
+keep the complete folder structure and use relative references such as
+`styles.css`, `scripts/app.js`, and `images/chart.png`. Read [how to share an
+HTML file online](/knowledge/publishing-html) or [how to publish a ZIP static
+website](/knowledge/publishing-zip) for the full upload requirements.
+
+## 2. Install the Dropley skill
+
+In the project you want to publish, install the maintained Dropley skill:
 
 ```
-npx skill add dropley/docs
+npx skills@latest add dropley/docs
 ```
 
-## Workflow
+Skills let Codex follow a reusable publishing workflow. If you do not use the
+skill, you can still upload the same `index.html`, folder, or ZIP on
+[dropley.app](https://dropley.app).
 
-1. Use the agent to write your project code
-2. Ask the agent: "Publish this to Dropley"
-3. The agent uses the skill to upload your files and return a shareable URL
+## 3. Ask Codex to publish the completed artifact
 
-## Example
+Give Codex a specific request after the static files are ready:
 
 ```
-Generate a dashboard.html page with a dark theme and three metric cards.
-Use Chart.js from CDN. Keep all CSS inline. Then publish to Dropley.
+Create a finished static project for this dashboard. Save the entry page as
+index.html, keep local assets in relative paths, and do not use server-side
+code. Publish the completed project to Dropley and return the shareable URL.
 ```
 
-## For Agents
+The resulting link is public and temporary. Dropley offers 1-, 3-, and 7-day
+lifetimes, with 3 days as the default. Open the URL once before you send it and
+upload again if you need a new link later; [core concepts](/knowledge/concepts)
+explains the artifact lifecycle.
 
-Dropley is machine-readable: fetch any dropley.app page (for example `/features` or `/about`) with an `Accept: text/markdown` header to get a Markdown version, start from [llms.txt](https://dropley.app/llms.txt) for a site index, and use the [OpenAPI spec](https://dropley.app/api/v1/openapi.json) for programmatic publishing.
+## 4. Check the published page before sharing
+
+Review the HTML, visible data, and local assets before publishing. Anyone with
+the resulting URL can open it until it expires, so do not use this workflow for
+content that needs authentication, private access control, permanent hosting,
+or a custom domain.
+
+If styles, images, or scripts are missing, confirm that you uploaded the
+complete folder or ZIP and that its paths are relative. The
+[troubleshooting guide](/knowledge/troubleshooting) covers common upload and
+serving failures, and [service limits](/knowledge/limits) lists file, path,
+and expiry constraints.
+
+<a href="https://dropley.app/?utm_source=referral&utm_medium=referral&utm_campaign=codex-publishing-guide">Publish a completed Codex website</a>
