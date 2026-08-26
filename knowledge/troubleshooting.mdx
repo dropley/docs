@@ -1,83 +1,87 @@
 ---
 title: "Troubleshooting"
-description: "Common issues and how to fix them when using Dropley."
+description: "Fix common Dropley upload, index.html, asset-path, and static-site publishing problems."
 ---
 
 # Troubleshooting
 
-## Upload Failures
+If an upload fails or the published site is blank, first inspect the **finished static folder** before uploading it: it needs an `index.html` entry page and every local file that page references. Then open the published link and use the browser Console and Network panels to tell an upload problem from a browser loading problem.
 
-### "File type not supported"
+## Start with the complete static bundle
 
-You included a file type that isn't in the [supported list](/knowledge/publishing-zip#supported-file-types). Remove unsupported files from your ZIP and try again.
+For a multi-file site, upload the complete folder or ZIP—not only `index.html`. This is a working shape for a static project:
 
-### "File too large"
+```text
+my-site/
+├── index.html
+├── styles/
+│   └── main.css
+├── scripts/
+│   └── app.js
+└── images/
+    └── logo.svg
+```
 
-Your ZIP exceeds the [file size limit](/knowledge/limits). Optimize images, remove unused files, and try again.
+The references in `index.html` must match those paths:
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>My site</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/app.js" defer></script>
+  </head>
+  <body>
+    <img src="images/logo.svg" alt="My site logo">
+  </body>
+</html>
+```
+
+Relative paths such as these are the safest choice. Dropley preserves the project structure and also rewrites supported root-relative HTML asset paths such as `/styles/main.css`; do not use paths to files on your own computer such as `file:///Users/...`. For a one-file page, use [how to share an HTML file online](/knowledge/publishing-html); for the complete ZIP requirements, see [how to publish a static website](/knowledge/publishing-zip).
+
+## Identify the problem
+
+### `index.html` is missing
+
+Rename the page you want visitors to open to exactly `index.html`, then include it in the loose-file, folder, or ZIP upload. If the project contains several `index.html` files, Dropley uses the shallowest one, so put the intended entry page nearest the top of the project structure.
+
+### The page publishes, but local CSS, JavaScript, images, or fonts are missing
+
+Compare every `href`, `src`, CSS `url(...)`, and JavaScript asset path with the uploaded tree. Upload the referenced folders alongside `index.html`; a local reference cannot load a file that was left on your computer. Open the published URL once and use the browser Network panel to find the specific missing request before changing the path.
+
+### A file type is unsupported
+
+Dropley serves only the [supported static file types](/knowledge/publishing-zip#supported-file-types). Files with other extensions are not included in the published artifact, so remove the dependency, convert it to a supported format, or use a static export that does not require it. Also check the [current file, path, and upload limits](/knowledge/limits).
+
+### The project needs a server, database, private API, or build command
+
+Dropley serves finished static files in a browser; it does not run Node.js, PHP, Python, server-side rendering, server-side includes, or a database. Build or export the project first, then upload the output only when it contains an `index.html` and can work without those services. A public external service can still be a separate browser dependency, so test it from the published link.
+
+### The Console shows a CSP or network error
+
+A successful upload does not guarantee that every browser request can load. Dropley applies [Content Security Policy](/knowledge/security#content-security-policy) to published artifacts. In the browser Console, a CSP message identifies a blocked request; revise the page or dependency so it works under that policy. In the Network panel, check the request URL and status code: a failed remote request can instead be caused by that service being unavailable, requiring authentication, or rejecting the browser request. These are runtime dependency issues, not evidence that the upload failed.
+
+## Upload failures
+
+### The ZIP is too large
+
+ZIP uploads are limited to 50 MB and 1,000 files. Optimize images, remove unused files, and review [service limits](/knowledge/limits) before trying again.
 
 ### Upload hangs or times out
 
-- Check your internet connection
-- Try a smaller ZIP
-- Reduce image sizes
-- Wait a moment and try again
+Check your internet connection, try a smaller complete static bundle, and retry after a moment. If the upload completes but the page is broken, use the asset and browser checks above rather than uploading the same files repeatedly.
 
-## Publishing Issues
-
-### Artifact shows "failed" status
-
-This usually means Dropley couldn't extract or validate your ZIP. Try:
-
-1. Re-zip your project
-2. Make sure the ZIP isn't corrupted
-3. Verify the project includes an `index.html` file
-4. Check all files are supported types
-
-### "No index.html found"
-
-Dropley couldn't find an `index.html` file in the upload. Make sure:
-
-- The file is included in your ZIP, folder, or loose-file upload
-- The file name is exactly `index.html`
-- If your project has multiple `index.html` files, the one you want served is nearest the top of the project structure
-
-## Serving Issues
-
-### Page shows blank or broken
-
-- Check your HTML for syntax errors
-- Prefer relative asset paths, and make sure every path matches the uploaded folder structure
-- Open browser dev tools (F12) and check the Console/Network tabs for errors
-
-### CSS/JS not loading
-
-- Make sure the file paths in your HTML match the ZIP structure
-- Prefer relative paths such as `scripts/app.js`; supported root-relative HTML asset paths such as `/scripts/app.js` are rewritten when served
-- Check that file extensions match the supported types
-
-### Images not displaying
-
-- Verify the image path in your HTML
-- Check the image format is supported
-- Ensure the image file exists in your ZIP
-
-## Expiration Issues
+## Expiration issues
 
 ### My artifact expired before I expected
 
-Check which expiry was set in the manage panel that appeared under your URL right after publishing — the default is 3 days. The countdown starts immediately after successful publishing.
+Check the expiry selected in the manage panel shown under your URL right after publishing. The default is 3 days, and the countdown starts immediately after successful publishing.
 
 ### Can I extend an expired artifact?
 
-No. Once expired, the artifact is permanently deleted. You need to upload again.
-
-## Browser Issues
-
-### Page doesn't render correctly
-
-- Try a modern browser (Chrome, Firefox, Safari, Edge)
-- Clear your browser cache
-- Check for JavaScript errors in the console
+No. Once expired, the artifact is permanently deleted. Upload it again to create a new link.
 
 ## Machine-Facing API Errors
 
@@ -87,6 +91,6 @@ Requesting an unknown API path returns `404 Not Found` with `"code": "NOT_FOUND"
 
 The full request and response contract lives in the [API Reference](https://dropley.app/docs/api).
 
-## Still Stuck?
+## Still stuck?
 
-If you're still having issues, check the [service limits](/knowledge/limits) or browse the [FAQ](/knowledge/faq).
+Check the [FAQ](/knowledge/faq) for common product questions. When the finished bundle is ready, <a href="https://dropley.app/?utm_source=referral&utm_medium=referral&utm_campaign=troubleshooting-guide">publish the corrected static site</a>.
