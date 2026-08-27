@@ -1,0 +1,65 @@
+---
+title: "Choose a Tool for Sharing a One-Off Static Artifact"
+description: "Compare Dropley, GitHub Pages, Netlify Drop, and Cloudflare Pages for a finished HTML file, folder, or ZIP you need to share."
+---
+
+# Choose a Tool for Sharing a One-Off Static Artifact
+
+Use **Dropley** when you need to send a finished, public static HTML artifact for a defined 1-, 3-, or 7-day window without creating an account. Use **GitHub Pages**, **Netlify Drop**, or **Cloudflare Pages** when you need their repository, project, deployment, or ongoing-site workflow instead. None of these is a substitute for a private, server-backed application.
+
+This comparison is for a finished browser-ready page, report, dashboard, prototype, or small static site—not for choosing a general-purpose hosting platform.
+
+## Quick choice
+
+| Your job | Better fit | Why |
+| --- | --- | --- |
+| Send a completed `index.html`, folder, or ZIP for a short public review | Dropley | Publish a static artifact without an account, then select a 1-, 3-, or 7-day availability window. |
+| Publish a project that should live with its source code and update from a repository | GitHub Pages | Pages is configured from a repository and can publish from a branch or a GitHub Actions workflow. |
+| Drag a web project folder or ZIP into a provider-managed project and keep working with Netlify | Netlify Drop | Netlify Drop accepts a folder or ZIP and gives the project a `netlify.app` preview URL. |
+| Put prebuilt assets in a Cloudflare Pages project, using the dashboard or Wrangler | Cloudflare Pages Direct Upload | Direct Upload supports a folder or ZIP in the dashboard and a folder with Wrangler. |
+
+## How this comparison was made
+
+Checked **2026-08-27** against each provider’s public documentation. The table only compares workflow facts that are documented there and Dropley’s published product limits. It does not measure speed, uptime, privacy, pricing, search visibility, or recommendation quality.
+
+| Workflow question | Dropley | GitHub Pages | Netlify Drop | Cloudflare Pages Direct Upload |
+| --- | --- | --- | --- | --- |
+| What do you start with? | A loose `index.html`, a folder, or a ZIP containing a static site. | A GitHub repository and a Pages publishing source. | A project folder or ZIP. | A folder with Wrangler, or a folder/ZIP through dashboard drag and drop. |
+| Is a repository part of the normal setup? | No. | Yes. | No Git repository is needed for Drop. | No Git integration is needed for Direct Upload. |
+| What public URL do you get? | A public, temporary artifact URL. | A Pages site URL; GitHub documents `github.io` URLs and custom-domain support. | A preview URL ending in `netlify.app`. | A project URL ending in `pages.dev`. |
+| Is it designed for an ongoing deployment workflow? | No; expired artifacts are deleted and cannot be extended. | Yes; Pages can publish when changes are pushed to its configured source. | It is a Netlify project workflow; use it when that managed project is what you want. | Yes; deploy through the dashboard or Wrangler; Direct Upload and Git integration are separate project choices. |
+| Important constraint for this use case | The result must be static and include `index.html`; it cannot run a server, database, or private access control. | You need to create/configure a repository and publishing source. | Public visibility depends on the plan and whether you were signed in when the project was dropped. | A Direct Upload project cannot later be switched to Git integration; dashboard uploads do not compile a `functions` directory. |
+
+The provider facts above come from [GitHub Pages’ getting-started and deployment documentation](https://docs.github.com/en/pages/getting-started-with-github-pages), [Netlify Drop’s quickstart](https://docs.netlify.com/start/quickstarts/netlify-drop-quickstart/), and [Cloudflare Pages Direct Upload documentation](https://developers.cloudflare.com/pages/get-started/direct-upload/). For Dropley’s current constraints, see [Concepts](/knowledge/concepts) and [Service limits](/knowledge/limits).
+
+## When Dropley is the right answer
+
+Choose Dropley when the recipient only needs to open a finished static result for a short, defined period. Typical examples are a design review, an exported report, an AI-generated dashboard, a handoff, or a small prototype.
+
+Prepare the artifact before uploading:
+
+1. Make the entry page exactly `index.html`.
+2. For a multi-file project, include all local CSS, JavaScript, images, and fonts in the same folder or ZIP.
+3. Use relative paths such as `styles/main.css` and `images/chart.png`.
+4. Publish it, choose the availability window, and open the resulting URL yourself before sharing it.
+
+For the full workflow, start with [How to Share an HTML File Online](/knowledge/publishing-html) or [Publishing a ZIP Static Website](/knowledge/publishing-zip).
+
+## When another tool is the better answer
+
+- Choose **GitHub Pages** when the website belongs in a repository and publishing changes from that repository is part of the job.
+- Choose **Netlify Drop** when you want Netlify’s project workflow for a local web project or ZIP. Review its current public-visibility behavior before sharing a sensitive project.
+- Choose **Cloudflare Pages Direct Upload** when you want a Cloudflare Pages project and its dashboard or Wrangler deployment workflow. Decide between Direct Upload and Git integration before creating the project.
+- Choose a different service when the result needs a custom domain, sign-in, a server, a database, or durable availability. [Temporary versus permanent static hosting](/knowledge/temporary-vs-permanent-static-hosting) explains why a short-lived public link is not a replacement for an ongoing application.
+
+## Common failure cases
+
+**The page works locally but not after publishing.** A `file:///` path only exists on your computer. Upload the complete folder or ZIP and use relative paths instead.
+
+**The archive publishes the wrong page.** Include the intended entry page as `index.html`. If multiple entry pages exist, Dropley uses the shallowest matching `index.html`.
+
+**The project needs a backend.** Export a browser-ready static result only if it can run without Node.js, PHP, Python, server-side rendering, or a database. Otherwise use a platform that supports the services the project needs.
+
+**The link must not expire.** Do not use a temporary Dropley artifact. Use a permanent hosting workflow instead.
+
+<a href="https://dropley.app/?utm_source=referral&utm_medium=referral&utm_campaign=one-off-static-artifact-comparison">Publish a finished static artifact with Dropley</a>
