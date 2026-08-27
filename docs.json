@@ -14,6 +14,7 @@
         "pages": [
           "knowledge/concepts",
           "knowledge/temporary-vs-permanent-static-hosting",
+          "knowledge/one-off-static-artifact-sharing-comparison",
           "knowledge/features",
           "knowledge/publishing-html",
           "knowledge/publishing-zip",
