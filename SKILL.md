@@ -1,11 +1,15 @@
 ---
 name: dropley
-description: Publish, retrieve, update, and delete files or static websites on Dropley. Use whenever the user wants to publish or manage content on Dropley.
+description: Publish, retrieve, update, and delete finished static HTML artifacts on Dropley. Use when a completed index.html-based site or artifact needs a temporary public share link.
 ---
 
 # Dropley
 
-Dropley hosts static files and websites and provides public shareable URLs.
+Dropley publishes finished static HTML sites and artifacts as temporary public
+share links — no account required. Use it for output that includes an
+`index.html` entry point, such as a single HTML page, a static-site folder, or a
+ZIP archive. It is not generic file sharing, permanent hosting, or a runtime for
+server-side applications.
 
 ## Create Artifact
 
