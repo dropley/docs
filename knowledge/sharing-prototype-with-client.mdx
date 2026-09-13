@@ -1,0 +1,109 @@
+---
+title: "How to Share a Website Prototype With a Client"
+description: "Publish a finished static website prototype or landing-page preview to a temporary public URL, then send it to a client without an account or deployment setup."
+---
+
+# How to Share a Website Prototype With a Client
+
+To share a finished website prototype or landing-page preview with a client, export the browser-ready static output, make sure it includes `index.html`, publish it on [Dropley](https://dropley.app), and send the resulting URL through your existing email, chat, or meeting workflow. Your client can open the public link without a Dropley account.
+
+Dropley is a good fit when the client needs to see a completed static result for a short review window. The link is public and temporary: every Artifact expires after 1, 3, or 7 days, with 3 days as the default. Dropley does not add comments, annotations, approvals, private access, version history, custom domains, or a feedback inbox. Ask for feedback in the communication channel you already use with the client.
+
+## Is this the right way to share your prototype?
+
+Use a Dropley Artifact when the recipient only needs to open a finished static page in a browser:
+
+| Your situation | What to do |
+| --- | --- |
+| A client needs to review a finished landing page or static prototype for a few days | Publish the completed static output and send the public URL. |
+| The page is one self-contained `index.html` | Upload the HTML file directly. |
+| The page uses local CSS, JavaScript, images, fonts, or data | Upload the complete folder or a ZIP so the relative paths stay together. |
+| The project needs a server, database, login, private API, or build command | Export a static version first, or use a service that provides those capabilities. |
+| The client needs a permanent URL, private access, a custom domain, or built-in review comments | Dropley is not the right delivery method for that requirement. |
+
+For the difference between a temporary preview and ongoing hosting, see [Temporary Static Hosting vs. Permanent Hosting](/knowledge/temporary-vs-permanent-static-hosting).
+
+## 1. Finish the static output
+
+Publish the output your client's browser should load, not the source project that still needs a development server or build step. Before uploading:
+
+- Export or build the prototype so the output contains an `index.html` entry page.
+- Open the output locally and click through the important sections, links, and states.
+- Remove API keys, tokens, private data, draft credentials, and anything that should not be public.
+- Use relative paths for local assets, such as `styles/main.css` or `images/hero.webp`.
+- Decide whether the output is a single file or a multi-file project.
+
+If an AI assistant generated the prototype, review the completed browser output before publishing it. [Publishing an AI-generated HTML report or dashboard](/knowledge/publishing-ai-html-reports) covers the same static-output check, and the [AI assistant guides](/guides/claude) explain assistant-specific workflows.
+
+## 2. Package the files your browser needs
+
+Choose the smallest complete package:
+
+| Prototype output | Upload | Check |
+| --- | --- | --- |
+| One self-contained page | A loose `index.html` | CSS, JavaScript, and data are inline or intentionally loaded from public URLs. |
+| A page with local files | The complete folder | The folder keeps `index.html` beside the paths it references. |
+| A multi-file export | A ZIP of the finished output | The archive contains `index.html` and the required supported assets at the expected paths. |
+
+This example is a completed, self-contained landing page you can [inspect as `index.html`](/examples/client-review-landing-page/), save locally, and publish as-is. It has no build step, server runtime, or external asset dependency, so it is a useful baseline for checking the workflow.
+
+For a single HTML page, see [How to Share an HTML File Online](/knowledge/publishing-html). For a multi-file site, see [How to Upload a ZIP and Publish a Static Website](/knowledge/publishing-zip). The [Example Projects](/knowledge/examples) page has more structures to inspect.
+
+## 3. Publish the preview
+
+1. Open [Dropley](https://dropley.app).
+2. Drag your `index.html`, complete folder, or ZIP onto the homepage canvas. You can also click the canvas to use the file picker.
+3. Wait for publishing to finish and copy the generated `preview.dropley.app/p/{shortId}` URL.
+4. Open the URL in a browser yourself. Check the hero, navigation, images, forms or buttons, and any important responsive state before sending it.
+5. In the manage panel below the URL, choose a 1-, 3-, or 7-day lifetime if the default 3 days is not the right review window.
+
+The published Artifact is public to anyone who receives the URL. Your client does not need a Dropley account, and the link is not permanent: after its lifetime ends, the Artifact and its files are deleted. If the review continues beyond that window, publish the finished output again to create a new URL.
+
+## 4. Send the URL through your existing review channel
+
+Send the URL in the email thread, chat, ticket, or meeting follow-up where the client already gives feedback. Include:
+
+1. What the client should review, such as the headline, call to action, or mobile layout.
+2. The public preview URL.
+3. The date the temporary link expires.
+4. Where to send comments or requested changes.
+
+The URL is the preview delivery mechanism, not a client-review workspace. Dropley does not collect approvals, annotations, comments, or versioned feedback, so keep that conversation in your existing channel.
+
+## Package and asset checklist
+
+Before you send the URL, confirm that:
+
+- The intended entry page is named exactly `index.html`.
+- Every local stylesheet, script, image, font, or data file referenced by the page is included.
+- References match the uploaded structure, for example `images/logo.svg` points to `images/logo.svg`.
+- You are not relying on `file:///` paths, a local development server, server-side code, a database, or an unreviewed private API.
+- The files and extensions fit the [current service limits and supported types](/knowledge/limits).
+
+If you are uploading a ZIP, preserve the directory structure your HTML expects. Do not upload only `index.html` when it references local files.
+
+## Common failures and recovery
+
+### The upload says `index.html` is missing
+
+Rename the intended entry page to exactly `index.html` and include it in the loose-file, folder, or ZIP upload. If several entry pages exist, put the page you want clients to see at the shallowest intended path. See [Troubleshooting](/knowledge/troubleshooting) for the entry-point rules.
+
+### The page loads but its styles or images are missing
+
+Upload the complete folder or ZIP and compare each `href`, `src`, and CSS `url(...)` with the uploaded tree. Use the browser Network panel on the published URL to find the missing request, then correct the relative path and publish again.
+
+### The prototype works locally but needs a server
+
+Dropley serves finished static browser files. It does not run Node.js, PHP, Python, server-side rendering, server-side includes, a database, or a private API. Export a static version that works without those services, or choose a delivery method designed for the application.
+
+### The ZIP is rejected or a dependency is not served
+
+Review the [service limits](/knowledge/limits) and [supported file types](/knowledge/publishing-zip#supported-file-types). Remove unused files, optimize large assets, and make sure the page does not depend on an unsupported extension.
+
+### The client opens an expired link
+
+An expired Artifact cannot be extended and its files are permanently deleted. Publish the same completed output again and send the new URL with its new expiry date.
+
+## Publish the client preview
+
+When the finished static output is ready, [publish the prototype preview with Dropley](https://dropley.app/?utm_source=referral&utm_medium=referral&utm_campaign=client-review-prototype-guide). Open the link once, confirm the review window, and then send it through the channel your client already uses.
