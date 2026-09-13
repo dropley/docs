@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A static landing-page prototype for Field Notes Coffee Co.">
+  <title>Field Notes Coffee Co. | Client Review Prototype</title>
+  <style>
+    :root {
+      --ink: #17322d;
+      --muted: #5d716a;
+      --cream: #f8f5ee;
+      --paper: #fffdf8;
+      --sage: #dbe7d8;
+      --leaf: #2f6b50;
+      --gold: #d49a4a;
+      --line: #dce4dc;
+      --shadow: 0 18px 45px rgba(23, 50, 45, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+    .announcement {
+      padding: 10px 20px;
+      background: var(--ink);
+      color: #f8f5ee;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      border-bottom: 1px solid rgba(220, 228, 220, 0.8);
+      background: rgba(248, 245, 238, 0.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      min-height: 76px;
+    }
+
+    .brand {
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 28px; }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { color: var(--leaf); }
+
+    .hero {
+      align-items: center;
+      display: grid;
+      gap: 58px;
+      grid-template-columns: 1.05fr 0.95fr;
+      min-height: 650px;
+      padding: 80px 0 96px;
+    }
+
+    .eyebrow {
+      color: var(--leaf);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      margin: 0 0 18px;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.08; }
+
+    h1 {
+      font-size: clamp(3.4rem, 7vw, 6.7rem);
+      font-weight: 500;
+      letter-spacing: -0.065em;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    .hero-copy > p:not(.eyebrow) {
+      color: var(--muted);
+      font-size: 1.12rem;
+      margin: 26px 0 30px;
+      max-width: 510px;
+    }
+
+    .actions { align-items: center; display: flex; flex-wrap: wrap; gap: 14px; }
+
+    .button {
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      display: inline-block;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 13px 22px;
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .button:hover { box-shadow: 0 8px 18px rgba(23, 50, 45, 0.14); transform: translateY(-2px); }
+
+    .button.primary { background: var(--ink); color: #fffdf8; }
+    .button.secondary { background: transparent; color: var(--ink); }
+
+    .hero-art {
+      background: var(--sage);
+      border-radius: 48% 48% 16px 16px;
+      box-shadow: var(--shadow);
+      min-height: 470px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-art::before {
+      background: #f2d29e;
+      border-radius: 50%;
+      content: "";
+      height: 280px;
+      left: 14%;
+      position: absolute;
+      top: 18%;
+      width: 280px;
+    }
+
+    .hero-art::after {
+      background: var(--leaf);
+      border-radius: 100% 0 100% 0;
+      bottom: -6%;
+      content: "";
+      height: 270px;
+      position: absolute;
+      right: 8%;
+      transform: rotate(24deg);
+      width: 160px;
+    }
+
+    .art-card {
+      background: var(--paper);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      left: 14%;
+      padding: 18px;
+      position: absolute;
+      top: 35%;
+      transform: rotate(-7deg);
+      width: 245px;
+      z-index: 1;
+    }
+
+    .art-card span { color: var(--gold); font-size: 1.7rem; }
+    .art-card h2 { font-size: 1.7rem; margin: 16px 0 8px; }
+    .art-card p { color: var(--muted); font-size: 0.8rem; margin: 0; }
+
+    .strip {
+      border-bottom: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      display: flex;
+      font-size: 0.78rem;
+      justify-content: space-between;
+      letter-spacing: 0.08em;
+      padding: 20px 0;
+      text-transform: uppercase;
+    }
+
+    section { padding: 110px 0; }
+
+    .section-heading {
+      align-items: end;
+      display: flex;
+      gap: 30px;
+      justify-content: space-between;
+      margin-bottom: 42px;
+    }
+
+    h2 { font-size: clamp(2.4rem, 4vw, 4rem); font-weight: 500; letter-spacing: -0.05em; margin: 0; }
+    .section-heading p { color: var(--muted); max-width: 360px; margin: 0; }
+
+    .cards { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .card-art { background: var(--sage); border-radius: 10px; height: 190px; margin-bottom: 22px; position: relative; }
+    .card-art::after { background: var(--gold); border-radius: 50%; content: ""; height: 92px; left: 50%; position: absolute; top: 50%; transform: translate(-50%, -50%); width: 92px; }
+    .card:nth-child(2) .card-art { background: #e8d4c2; }
+    .card:nth-child(2) .card-art::after { background: #9b684c; border-radius: 18px 18px 50% 50%; height: 115px; width: 72px; }
+    .card:nth-child(3) .card-art { background: #d8dce7; }
+    .card:nth-child(3) .card-art::after { background: #66769f; border-radius: 10px; height: 105px; width: 105px; }
+    .card h3 { font-size: 1.45rem; margin: 0 0 8px; }
+    .card p { color: var(--muted); font-size: 0.92rem; margin: 0; }
+
+    .story {
+      align-items: center;
+      display: grid;
+      gap: 74px;
+      grid-template-columns: 0.85fr 1.15fr;
+    }
+
+    .story-panel { background: var(--ink); border-radius: 16px; color: #f8f5ee; min-height: 400px; padding: 42px; }
+    .story-panel .eyebrow { color: #f2d29e; }
+    .story-panel p { color: #c6d2c9; max-width: 330px; }
+    .story-copy p { color: var(--muted); font-size: 1.08rem; max-width: 520px; }
+    .story-copy blockquote { border-left: 2px solid var(--gold); font-family: Georgia, "Times New Roman", serif; font-size: 1.65rem; margin: 32px 0 0; padding-left: 24px; }
+
+    footer { border-top: 1px solid var(--line); padding: 30px 0 44px; }
+    .footer-row { align-items: center; display: flex; justify-content: space-between; }
+    .footer-row p { color: var(--muted); font-size: 0.84rem; margin: 0; }
+
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 28px, 560px); }
+      .nav-links { gap: 14px; }
+      .nav-links a:nth-child(2) { display: none; }
+      .hero { gap: 44px; grid-template-columns: 1fr; padding: 64px 0 76px; }
+      .hero-art { min-height: 360px; }
+      .strip { flex-wrap: wrap; gap: 10px 18px; }
+      section { padding: 78px 0; }
+      .section-heading, .story { align-items: start; display: grid; gap: 20px; grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr; }
+      .card-art { height: 150px; }
+      .story-panel { min-height: 300px; }
+      .footer-row { align-items: start; flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement">Small-batch coffee for slower mornings</div>
+
+  <header>
+    <div class="shell nav">
+      <a class="brand" href="#top">Field Notes Coffee Co.</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#collection">Collection</a>
+        <a href="#story">Our story</a>
+        <a href="#visit">Find us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="shell hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Roasted with intention</p>
+        <h1>Make room for better mornings.</h1>
+        <p>Thoughtful coffee for the everyday rituals that deserve a little more time. Roasted in small batches, delivered fresh.</p>
+        <div class="actions">
+          <a class="button primary" href="#collection">Explore the collection</a>
+          <a class="button secondary" href="#story">Our approach</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="art-card">
+          <span>✳</span>
+          <h2>Good things take time.</h2>
+          <p>Notes of toasted almond, citrus, and brown sugar.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="shell strip" aria-label="Brand highlights">
+      <span>Single origin</span>
+      <span>Small batch</span>
+      <span>Fresh every week</span>
+      <span>Since 2018</span>
+    </div>
+
+    <section id="collection">
+      <div class="shell">
+        <div class="section-heading">
+          <h2>Find your daily pour.</h2>
+          <p>Three coffees, each with a distinct point of view. Start with what sounds good today.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card-art" aria-hidden="true"></div>
+            <h3>Daybreak</h3>
+            <p>Bright and balanced, with apricot sweetness and a clean finish.</p>
+          </article>
+          <article class="card">
+            <div class="card-art" aria-hidden="true"></div>
+            <h3>Low Tide</h3>
+            <p>Comforting and full-bodied, with dark chocolate and toasted spice.</p>
+          </article>
+          <article class="card">
+            <div class="card-art" aria-hidden="true"></div>
+            <h3>After Rain</h3>
+            <p>Soft and floral, with notes of honey, pear, and jasmine.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="shell story">
+        <div class="story-panel">
+          <p class="eyebrow">Our approach</p>
+          <h2>Less noise. More nuance.</h2>
+          <p>We work with small farms, roast with care, and leave room for the character of every bean to show up in the cup.</p>
+        </div>
+        <div class="story-copy">
+          <p>Field Notes began with a simple question: what would happen if coffee felt less like a routine and more like a place to return to?</p>
+          <p>Today, we build our menu around seasonal lots and honest tasting notes. Nothing overcomplicated, nothing hidden behind a dark roast.</p>
+          <blockquote>“The best part of the day can be the part you make for yourself.”</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="visit">
+      <div class="shell">
+        <div class="section-heading">
+          <h2>Come say hello.</h2>
+          <p>Find the roastery in the North Loop, or bring a bag home for tomorrow morning.</p>
+        </div>
+        <div class="actions">
+          <a class="button primary" href="#collection">See the collection</a>
+          <a class="button secondary" href="#top">Back to top</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-row">
+      <a class="brand" href="#top">Field Notes Coffee Co.</a>
+      <p>Prototype landing page · Crafted for slow mornings</p>
+    </div>
+  </footer>
+</body>
+</html>
