@@ -37,6 +37,12 @@ Dropley uses:
 - **Origin isolation**: Published artifacts are served with `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Resource-Policy: same-origin`
 - **No iframing**: `frame-ancestors: 'none'` prevents embedding in third-party sites
 
+### Artifact Security Review
+
+New artifacts go live as soon as publishing finishes while their security check is pending. This review-status foundation is deliberately fail-open: a pending check does not by itself make a published link unavailable.
+
+If you still have the artifact token, the manage panel can show a high-level status such as pending, needs attention, under review, or a recorded takedown. Dropley does not expose raw scanner output or reviewer findings in that panel. A recorded security action may result in content removal under the enforcement policy below.
+
 ### Data Deletion
 
 When an artifact expires, all associated files and metadata are permanently deleted. No backups are retained.
