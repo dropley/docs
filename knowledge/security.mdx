@@ -43,6 +43,37 @@ New artifacts go live as soon as publishing finishes while their security check 
 
 If you still have the artifact token, the manage panel can show a high-level status such as pending, needs attention, under review, or a recorded takedown. Dropley does not expose raw scanner output or reviewer findings in that panel. A recorded security action may result in content removal under the enforcement policy below.
 
+The automated check looks for combinations of signals associated with harmful or
+deceptive content. It does not execute the files or make them public as part of
+the check.
+
+Most findings do not interrupt availability. Lower-severity findings keep an
+artifact online while they are flagged for operator review. A high-severity
+finding can place an artifact under security review and temporarily make it
+unavailable to visitors. Operators may also take down content directly when a
+report or investigation shows that it violates these policies.
+
+If an artifact is unavailable because it is under review, its files and scanner
+details are not exposed to visitors. Legitimate artifacts can be restored after
+review when the issue has been resolved.
+
+### Requesting a Review
+
+If your artifact is unavailable, or its manage panel says its content is worth
+a second look, and you believe that status was applied in error, you can ask us
+to review the decision. A pending or incomplete security check is not an
+adverse decision and does not require an appeal. Email
+[hello@dropley.app](mailto:hello@dropley.app) with:
+
+- The artifact ID
+- The date you uploaded it
+- A short description of what the app or site does
+- A contact email address where we can reply
+
+Please include enough context for us to understand the intended use of the
+artifact. We review requests individually and will let you know the outcome at
+the contact address you provide.
+
 ### Data Deletion
 
 When an artifact expires, all associated files and metadata are permanently deleted. No backups are retained.
