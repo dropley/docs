@@ -38,6 +38,8 @@ code { background: #eef1f8; border-radius: 5px; padding: 2px 5px; }
 footer { color: #65718d; font-size: .9rem; padding-bottom: 32px; }
 body[data-theme="dusk"] { background: #171c2c; color: #edf1ff; }
 body[data-theme="dusk"] .panel, body[data-theme="dusk"] .card, body[data-theme="dusk"] .secondary { background: #242b42; border-color: #414c70; color: #edf1ff; }
-body[data-theme="dusk"] .card p, body[data-theme="dusk"] .intro > p, body[data-theme="dusk"] .notes > p { color: #bdc7e2; }
+body[data-theme="dusk"] .card p, body[data-theme="dusk"] .intro > p, body[data-theme="dusk"] .notes > p { color: #cbd4eb; }
+body[data-theme="dusk"] .eyebrow, body[data-theme="dusk"] footer { color: #c7d1ef; }
+body[data-theme="dusk"] .card a, body[data-theme="dusk"] .quiet { color: #c5d2ff; }
 body[data-theme="dusk"] code { background: #343e5e; }
 @media (max-width: 720px) { .topbar, main, footer { width: min(100% - 28px, 560px); } .section-heading { align-items: start; flex-direction: column; } .card-grid { grid-template-columns: 1fr; } }
