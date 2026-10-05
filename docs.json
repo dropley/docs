@@ -77,7 +77,8 @@
     "/examples/html-with-assets/",
     "/examples/zip-project/",
     "/examples/markdown/",
-    "/examples/client-review-landing-page/"
+    "/examples/client-review-landing-page/",
+    "/examples/storybook-static-export/"
   ],
   "footer": {
     "socials": {

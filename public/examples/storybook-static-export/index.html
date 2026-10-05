@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A small static component-library preview with local CSS and JavaScript assets.">
+    <title>Component Library Preview</title>
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top">Orbit UI</a>
+      <span class="badge">Static preview</span>
+    </header>
+
+    <main id="top">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">Component library</p>
+        <h1 id="page-title">Buttons, cards, and states in one shareable static export.</h1>
+        <p>Open this page directly, change a component state, and inspect the local files that make the preview work. It needs no server or build command after export.</p>
+      </section>
+
+      <section aria-labelledby="buttons-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Buttons</p>
+            <h2 id="buttons-title">Clear actions at every priority.</h2>
+          </div>
+          <button class="button secondary" id="theme-toggle" type="button">Use dusk theme</button>
+        </div>
+        <div class="panel button-row" aria-label="Button examples">
+          <button class="button primary" type="button">Save changes</button>
+          <button class="button secondary" type="button">Preview</button>
+          <button class="button quiet" type="button">Cancel</button>
+        </div>
+      </section>
+
+      <section aria-labelledby="cards-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Cards</p>
+            <h2 id="cards-title">A compact set of reusable states.</h2>
+          </div>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <span class="status success">Published</span>
+            <h3>Release checklist</h3>
+            <p>All visual QA items are ready for the next review.</p>
+            <a href="#notes">Read release notes <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="card">
+            <span class="status review">In review</span>
+            <h3>Navigation refresh</h3>
+            <p>Two compact-screen states still need sign-off.</p>
+            <a href="#notes">View open items <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="card">
+            <span class="status draft">Draft</span>
+            <h3>Empty state</h3>
+            <p>Copy and illustration are ready for content review.</p>
+            <a href="#notes">Compare variants <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </section>
+
+      <section class="notes panel" id="notes" aria-labelledby="notes-title">
+        <p class="eyebrow">Export notes</p>
+        <h2 id="notes-title">Keep the entry page and its assets together.</h2>
+        <p>This example uses <code>index.html</code>, <code>assets/styles.css</code>, and <code>assets/preview.js</code> with relative paths. Upload the finished folder or a ZIP containing the same structure.</p>
+      </section>
+    </main>
+
+    <footer>Orbit UI static component-library example</footer>
+    <script src="assets/preview.js"></script>
+  </body>
+</html>
