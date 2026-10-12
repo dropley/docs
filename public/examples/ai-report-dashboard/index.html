@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A fictional static report example with local CSS and JavaScript assets." />
+    <title>Fictional delivery report | Dropley example</title>
+    <link rel="stylesheet" href="assets/report.css" />
+    <script defer src="assets/report.js"></script>
+  </head>
+  <body>
+    <main class="report" aria-labelledby="report-title">
+      <header class="report-header">
+        <p class="eyebrow">Static report example</p>
+        <h1 id="report-title">Fictional delivery snapshot</h1>
+        <p>Sample data only. This page has no account, server, private API, or external dependency.</p>
+      </header>
+
+      <section class="metrics" aria-label="Monthly metrics">
+        <article>
+          <p>Projects delivered</p>
+          <strong>12</strong>
+          <span>2 more than last month</span>
+        </article>
+        <article>
+          <p>On-time rate</p>
+          <strong>96%</strong>
+          <span>Up 4 percentage points</span>
+        </article>
+        <article>
+          <p>Review score</p>
+          <strong>4.8/5</strong>
+          <span>From fictional survey results</span>
+        </article>
+      </section>
+
+      <section class="details" aria-labelledby="details-title">
+        <div>
+          <h2 id="details-title">Delivery activity</h2>
+          <p>The bars are rendered from fixed data in the local JavaScript file.</p>
+        </div>
+        <ol id="activity-list" class="activity-list"></ol>
+      </section>
+
+      <button id="toggle-details" type="button" aria-expanded="false" aria-controls="report-notes">
+        Show report notes
+      </button>
+      <section id="report-notes" hidden>
+        <h2>What this example proves</h2>
+        <p>
+          A completed report can keep its HTML, CSS, and JavaScript together with relative paths. Package this
+          folder or a ZIP that preserves the same structure before publishing.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
