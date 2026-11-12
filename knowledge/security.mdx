@@ -30,12 +30,14 @@ The cookie is host-only, `HttpOnly`, `Secure`, and `SameSite=Lax`, with a 90-day
 Dropley uses:
 - **Rate limiting** to prevent API abuse (per-endpoint, IP-based with HMAC-hashed identifiers)
 - **WAF rules** at the edge for common attack patterns
-- **IP-based throttling** with daily rotating HMAC-SHA256 hashing — no raw IPs stored
+- **IP-based throttling** with daily rotating HMAC-SHA256 hashes for rate-limit identifiers
 - **Abuse detection**: Failed authentication attempts are tracked per identifier; after a configurable threshold, the identifier is temporarily blocked
 - **Path traversal protection**: Absolute paths, `..` traversal, hidden files, and deep nesting are rejected
 - **File type whitelist**: Only allowed extensions (HTML, CSS, JS, images, fonts) are accepted
 - **Origin isolation**: Published artifacts are served with `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Resource-Policy: same-origin`
 - **No iframing**: `frame-ancestors: 'none'` prevents embedding in third-party sites
+
+Dropley uses IP addresses to provide the service and prevent abuse. An uploader's IP address is stored with the artifact's metadata. See the [Privacy Policy](https://dropley.app/privacy) for details.
 
 ### Artifact Security Review
 
