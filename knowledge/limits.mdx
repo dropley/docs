@@ -11,11 +11,15 @@ Dropley is designed to be generous for typical use cases. These limits help ensu
 
 | Limit | Value |
 |-------|-------|
-| Maximum file size | 50 MB per upload |
-| Maximum files per ZIP | 1,000 files |
+| Maximum combined size of published files | 50 MB per artifact |
+| Maximum files per artifact | 1,000 files |
 | Maximum directory depth | 5 levels |
 | Maximum path length | 255 characters |
 | Supported file types | 13 extensions (see [ZIP projects](/knowledge/publishing-zip#supported-file-types)) |
+
+The size and file-count limits apply to HTML, folder, and ZIP uploads. Add together the sizes of all files you intend to publish; the 50 MB budget is shared by the whole artifact.
+
+For a ZIP upload, the archive itself must also fit within 50 MB. Its extracted files must fit the combined published-files budget, so an archive smaller than 50 MB can still be too large after extraction. Remove unused files or optimize large assets before trying again.
 
 ## Expiration Limits
 
@@ -28,19 +32,9 @@ Dropley is designed to be generous for typical use cases. These limits help ensu
 
 ## Rate Limits
 
-Rate limits are applied per endpoint to prevent abuse. Limits are reset per window (minute or hour). If you exceed a rate limit, you'll receive a `429 Too Many Requests` response.
+Publishing is rate limited to prevent abuse. The default upload allowance is **5 requests per hour per IP address**; other actions have separate limits.
 
-| Endpoint | Window | Limit |
-|----------|--------|-------|
-| POST /api/artifacts | Per hour | 5 requests |
-| PATCH /api/artifacts/{shortId} | Per minute | 20 requests |
-| DELETE /api/artifacts/{shortId} | Per minute | 20 requests |
-| GET /api/settings | Per minute | 30 requests |
-| GET /api/health | Per minute | 60 requests |
-| GET /api/version | Per minute | 60 requests |
-| GET /api/track | Per minute | 60 requests |
-| GET /api/report | Per minute | 60 requests |
-| POST /api/csp-report | Per minute | 60 requests |
+If a request receives `429 Too Many Requests`, wait for the number of seconds in its `Retry-After` response header before trying again. See the [API reference](https://dropley.app/docs/api) for current API rate-limit details and response headers.
 
 ## Fair Use
 
