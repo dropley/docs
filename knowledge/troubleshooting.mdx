@@ -57,11 +57,72 @@ Dropley serves only the [supported static file types](/knowledge/publishing-zip#
 
 ### The project needs a server, database, private API, or build command
 
-Dropley serves finished static files in a browser; it does not run Node.js, PHP, Python, server-side rendering, server-side includes, or a database. Build or export the project first, then upload the output only when it contains an `index.html` and can work without those services. A public external service can still be a separate browser dependency, so test it from the published link.
+Dropley serves finished static files in a browser; it does not run Node.js, PHP, Python, server-side rendering, server-side includes, or a database. Build or export the project first, then upload the output only when it contains an `index.html` and can work without those services. For pages that load remote data in the browser, follow [the external data checks below](#external-data-does-not-load) before publishing.
 
 ### The Console shows a CSP or network error
 
 A successful upload does not guarantee that every browser request can load. Dropley applies [Content Security Policy](/knowledge/security#content-security-policy) to published artifacts. In the browser Console, a CSP message identifies a blocked request; revise the page or dependency so it works under that policy. In the Network panel, check the request URL and status code: a failed remote request can instead be caused by that service being unavailable, requiring authentication, or rejecting the browser request. These are runtime dependency issues, not evidence that the upload failed.
+
+### External data does not load
+
+If a report or dashboard opens but its data stays empty, check the browser Console for a message naming `connect-src`. Published artifacts use `connect-src 'self'`: `fetch()` and `XMLHttpRequest` data requests must stay on the page's own origin (scheme, host, and port). A request to another origin is blocked even when the endpoint is public and allows cross-origin access through CORS. Changing that endpoint's CORS headers does not remove the page's CSP restriction.
+
+For a shareable static report, export only data that is safe for anyone with the link to read. Save it as a supported `.json` file beside `index.html`, include both files in the folder or ZIP upload, and fetch it with a relative path such as `./data.json`. For a single-file page, you can instead place the safe public values directly in the page's JavaScript and render them without a data request.
+
+Try this complete two-file example. Save this as **`data.json`**:
+
+```json
+{
+  "label": "Public project snapshot",
+  "total": 42
+}
+```
+
+Save this as **`index.html`** in the same folder:
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Public project snapshot</title>
+  </head>
+  <body>
+    <h1>Project snapshot</h1>
+    <p id="status" role="status">Loading public data…</p>
+    <p id="summary" hidden></p>
+    <script>
+      async function loadSnapshot() {
+        const status = document.getElementById('status');
+        const summary = document.getElementById('summary');
+        try {
+          const response = await fetch('./data.json');
+          if (!response.ok) {
+            throw new Error(`data.json returned HTTP ${response.status}`);
+          }
+          const data = await response.json();
+          if (!data || typeof data.label !== 'string' ||
+              typeof data.total !== 'number' || !Number.isFinite(data.total)) {
+            throw new Error('data.json needs a text label and a numeric total');
+          }
+          summary.textContent = `${data.label}: ${data.total}`;
+          summary.hidden = false;
+          status.textContent = 'Public data loaded.';
+        } catch (error) {
+          status.textContent = 'Could not load data.json. Check that it was uploaded beside index.html, then inspect the browser Console and Network panel.';
+          console.error('Snapshot load failed:', error);
+        }
+      }
+      loadSnapshot();
+    </script>
+  </body>
+</html>
+```
+
+After publishing both files, open the published link and check that it displays **Public project snapshot: 42**. Test from that link rather than opening `index.html` as a local `file://` URL. If it fails, use the Console and Network panels to check the request path, HTTP status, and JSON format.
+
+This is a **public static snapshot**. To refresh it, update the exported data and republish the complete bundle, then share the new link. It does not provide live access to a private service. Never include credentials, API keys, access tokens, or confidential data in the HTML, JavaScript, or JSON; visitors can read the published files.
 
 ## Upload failures
 
