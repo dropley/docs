@@ -14,7 +14,7 @@ The official documentation website for [Dropley](https://dropley.app) — publis
 | `knowledge/` | User docs — getting started, concepts, limits, security, FAQ |
 | `guides/` | AI assistant integration guides (Claude, Codex, Gemini, etc.) |
 | `public/examples/` | Reference projects you can inspect and learn from |
-| `SKILL.md` | Dropley skill definition for AI coding agents |
+| `SKILL.md` | Canonical Dropley skill for AI coding agents, served at [docs.dropley.app/skill.md](https://docs.dropley.app/skill.md) |
 
 ## Contributing
 
@@ -27,6 +27,10 @@ npm install
 npm run dev     # local preview at http://localhost:5173
 npm run build   # production build
 ```
+
+Edit the root `SKILL.md` to update the official skill. Keep `public/skill.md` as the relative symlink `../SKILL.md`, preserving that exact filename case. The build copies the source contents to `/skill.md`; do not replace the symlink with a second editable copy.
+
+Link to the raw skill with its full URL, `https://docs.dropley.app/skill.md`. The documentation generator strips `.md` from internal page links, so a root-relative link would point to the wrong path for this static asset.
 
 ## License
 
