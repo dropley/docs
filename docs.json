@@ -72,7 +72,6 @@
     "allowToggle": true
   },
   "knownPaths": [
-    "/skill",
     "/examples/basic-html/",
     "/examples/html-with-assets/",
     "/examples/zip-project/",
